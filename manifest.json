@@ -1,0 +1,16 @@
+{
+  "name": "PromptForge Pro — 37-in-1 AI Prompt Creator",
+  "short_name": "PromptForge",
+  "description": "Generate expert AI prompts for any industry. 37 business scenarios.",
+  "start_url": "/promptforge/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4338ca",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

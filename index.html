@@ -7,6 +7,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#4338ca">
+    <meta name="description" content="PromptForge Pro — 37-in-1 AI prompt builder for business. Generate expert prompts for workflow, marketing, sales, HR, legal, finance, and 31 more scenarios. Industry-specific, tone-customizable, with validator and gallery.">
+    <meta name="keywords" content="AI prompt builder, ChatGPT prompt generator, business prompt templates, AI prompt creator, prompt engineering, workflow automation prompts">
+    <meta property="og:title" content="PromptForge Pro — 37-in-1 AI Prompt Creator">
+    <meta property="og:description" content="Generate expert AI prompts for any industry. 37 business scenarios, tone customization, prompt validator, and gallery.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diverseinc.github.io/promptforge/">
+    <meta property="og:image" content="https://diverseinc.github.io/promptforge/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PromptForge Pro — 37-in-1 AI Prompt Creator">
+    <meta name="twitter:description" content="Generate expert AI prompts for any industry. 37 business scenarios with tone customization.">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -701,6 +712,97 @@
         .lg-trial { font-size: 0.8rem; color: var(--text-3); margin-top: 14px; }
         .lg-by { font-size: 0.75rem; color: var(--text-3); margin-top: 16px; text-align: center; }
 
+        /* ===== Free Preview Banner ===== */
+        .free-banner {
+            background: var(--primary-light);
+            padding: 10px 28px;
+            text-align: center;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+        .free-banner a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+        .free-banner a:hover { text-decoration: underline; }
+
+        /* ===== Upgrade Modal (Compact) ===== */
+        .upgrade-modal-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 28px;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            border: 1px solid var(--border);
+            text-align: center;
+            animation: lgFadeIn 0.35s ease;
+        }
+        .upgrade-modal-card h3 { font-size: 1.25rem; margin-bottom: 4px; }
+        .upgrade-modal-card .upgrade-sub { color: var(--text-2); font-size: 0.85rem; margin-bottom: 18px; }
+        .upgrade-modal-card input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+            text-align: center;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .upgrade-modal-card input:focus { border-color: var(--primary); }
+        .upgrade-modal-card input::placeholder { color: var(--text-3); letter-spacing: 0; }
+        .upgrade-modal-card .lg-btn {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.92rem;
+            font-family: var(--font);
+            transition: var(--transition);
+            margin-bottom: 8px;
+        }
+        .upgrade-modal-card .lg-btn:hover { opacity: 0.9; }
+        .upgrade-modal-card .upgrade-links { font-size: 0.85rem; margin-top: 10px; }
+        .upgrade-modal-card .upgrade-links a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .upgrade-modal-card .upgrade-links a:hover { text-decoration: underline; }
+        .upgrade-modal-card .upgrade-links button {
+            all: unset;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .upgrade-modal-card .upgrade-links button:hover { text-decoration: underline; }
+        .upgrade-modal-card .lg-err { color: var(--danger); font-size: 0.82rem; margin-bottom: 8px; display: none; font-weight: 500; }
+        .upgrade-modal-card .lg-ok { color: var(--success); font-size: 0.82rem; margin-bottom: 8px; display: none; font-weight: 500; }
+        .upgrade-modal-card .lg-by { font-size: 0.72rem; color: var(--text-3); margin-top: 12px; }
+
+        /* ===== Locked Mode Button ===== */
+        .mode-btn.locked {
+            opacity: 0.65;
+            border-style: dashed;
+        }
+        .mode-btn.locked:hover {
+            opacity: 1;
+            border-color: var(--warning);
+            border-style: dashed;
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
             body { padding: 10px; padding-bottom: calc(var(--nav-height) + 10px); align-items: flex-start; }
@@ -721,30 +823,32 @@
             .tone-row, .batch-toggle, .section-label, .output-actions,
             .refine-group, .history-panel, .dark-toggle, .modal-overlay,
             .btn, .bottom-nav, .back-to-top, .toast, .btn-generate,
-            .output-header, .counter, .lg-overlay { display: none !important; }
+            .output-header, .counter, .lg-overlay, .free-banner { display: none !important; }
             .output-group { display: block !important; }
             textarea { border: none; background: #fff; color: #000; min-height: auto; }
         }
     </style>
 </head>
 <body>
-    <!-- ===== LICENSE GATE ===== -->
-    <div id="lgGate" class="lg-overlay">
-        <div class="lg-card">
-            <div class="lg-icon">⚡</div>
-            <h2>PromptForge</h2>
-            <div class="lg-sub">37-in-1 AI Prompt Creator</div>
+    <!-- ===== FREE PREVIEW BANNER ===== -->
+    <div id="freeBanner" class="free-banner" style="display:none;">✨ Free Preview — 3 of 37 builders unlocked <a href="#" id="unlockAllLink">Unlock All →</a></div>
+
+    <!-- ===== UPGRADE MODAL ===== -->
+    <div id="upgradeModal" class="modal-overlay">
+        <div class="upgrade-modal-card">
+            <h3>⚡ Unlock All 37 Builders</h3>
+            <div class="upgrade-sub">One-time purchase · $19 · Lifetime access</div>
             <input id="lgKey" type="text" placeholder="Enter license key" autocomplete="off">
             <button class="lg-btn" id="lgBtn">Unlock PromptForge</button>
             <div class="lg-err" id="lgErr"></div>
             <div class="lg-ok" id="lgOk">License verified!</div>
-            <div class="lg-links">
+            <div class="upgrade-links">
                 <a id="lgBuy" href="https://diverseinc.gumroad.com/l/gujne" target="_blank" rel="noopener">Purchase License</a>
+                &nbsp;·&nbsp;
                 <button id="lgTrial">Try Free for 7 Days</button>
             </div>
-            <div class="lg-trial" id="lgTrialInfo"></div>
+            <div class="lg-by">by Diverse Industries Inc.</div>
         </div>
-        <div class="lg-by">by Diverse Industries Inc.</div>
     </div>
 
     <!-- ===== APP ===== -->
@@ -939,91 +1043,117 @@
 
     <script>
     // ===================================================================
-    // LICENSE SYSTEM
+    // LICENSE SYSTEM (Free Preview Mode)
     // ===================================================================
-    (function() {
-        var KEYS = [
-            'PF-LMPF-EVVN-0MZJ','PF-LNS8-DVWM-0HS3','PF-TUBQ-K6QZ-ITM8','PF-G8PA-FK40-YHPV','PF-V02H-UOC8-XXGR',
-            'PF-2WTX-C3KY-0UEJ','PF-TUXL-4OM9-S5ZT','PF-ODCZ-3PKG-84RP','PF-X6TP-0Q2T-BLGG','PF-WEY7-Z6VT-60UB',
-            'PF-LB3K-YIA7-8L0E','PF-JYRU-1PCN-5U8U','PF-H0TW-7IH6-7ECF','PF-K5OR-17SO-6FLY','PF-IRC6-EROD-CZFE',
-            'PF-EY83-Q1WD-UWK5','PF-UQVA-6ZJB-PWJA','PF-ENR4-0HIA-OCYL','PF-8H8Q-51BC-MOVH','PF-CSFM-JSF0-9O8F',
-            'PF-AP6I-K5N8-K1PK','PF-7IDF-2Z14-UQBD','PF-JIKC-6A74-TX8S','PF-1JN0-RQY6-MOGT','PF-V6PF-8LZV-K05G',
-            'PF-NVG5-AQWY-YNYD','PF-OHY0-P1R5-ZFRQ','PF-NDB0-P3M3-SYKN','PF-7R26-U3RL-PI1Q','PF-UOJY-UP35-INAQ',
-            'PF-L6ST-1FLO-JUNG','PF-ZVL5-UE7O-MBD9','PF-X0AM-OP94-NSPQ','PF-TJBH-NEL3-675X','PF-LVF6-928E-6UXB',
-            'PF-9THU-RR6K-MNOX','PF-L5EW-RCP8-X50G','PF-PMJB-TEI2-QE89','PF-26T9-8EYE-3VG4','PF-MV4Y-KFZ8-28AN',
-            'PF-DH7E-ULQ5-0YEK','PF-M0AK-V19C-RWQ6','PF-N48Y-HY34-7SXD','PF-2BS3-XUHX-EVUS','PF-GRCD-571D-R9LQ',
-            'PF-K0YS-NP27-1J4T','PF-ZWVV-WGFR-SIUE','PF-DDL0-WJUU-1DHS','PF-VV2X-WYTN-1ZAX','PF-KU0C-O7GB-83B6',
-            'PF-XQWT-6YHK-89D7','PF-G75S-8IJZ-SB5S','PF-5QXI-PNAS-9YZ4','PF-TTBG-16XP-1CIO','PF-INLZ-Y7QQ-7EU9',
-            'PF-XP0K-CZ60-46RU','PF-8ETJ-ZZTU-DJ8T','PF-R7EC-W0PI-3HWH','PF-K6ET-75H9-XY8K','PF-Y7MV-53BO-WK0D',
-            'PF-A56K-EX87-5M3L','PF-X2TL-B0Y7-LJ5T','PF-GRA7-AIAM-QV7Q','PF-KMOZ-K86C-YMCJ','PF-1L9K-PMLZ-244Q',
-            'PF-9QKW-6TLW-ISWK','PF-NZXS-6F1E-0Y7R','PF-LNV8-QQEQ-3MLN','PF-A7N2-ZECJ-737R','PF-4UV7-DSPM-KFG3',
-            'PF-Y3KV-PFX6-56OP','PF-WJU3-AGR1-M57O','PF-4BJ3-9I6N-A8SO','PF-5CLE-09TX-R6UR','PF-C01K-RIPK-AF7D',
-            'PF-ABMI-MCYM-U221','PF-TKRG-HW7F-58R1','PF-4IHM-ZX7V-QJMZ','PF-I543-VIYX-P4SU','PF-5LFT-JVKQ-BTRZ',
-            'PF-H8V2-BMOC-GF8K','PF-5K6N-XUH2-91O8','PF-E3GY-PRCH-CSA9','PF-Q4D7-WSG8-5KWT','PF-1PNW-190L-NWY0',
-            'PF-AIJ1-0WUS-92V5','PF-N4E2-VC16-QNFX','PF-ZSRH-7CTT-FLSU','PF-SAY4-PQ65-91C1','PF-QFRJ-E3OD-WLQV',
-            'PF-TGNR-4110-T8WC','PF-5LLG-HT7H-EMM8','PF-Z3O6-MZ4C-GELP','PF-LQJS-359I-5QFI','PF-KYJJ-KSOJ-STCM',
-            'PF-J2GZ-KB9F-WFTZ','PF-JRAR-UJLE-DHDA','PF-KRH4-8B8J-XLVV','PF-R0AJ-ZPSV-425M','PF-IA7A-XZFL-FIT1'
-        ];
-        var TRIAL_DAYS = 7;
+    var FREE_MODES = ['workflow', 'problem', 'marketing'];
+    var KEYS = [
+        'PF-LMPF-EVVN-0MZJ','PF-LNS8-DVWM-0HS3','PF-TUBQ-K6QZ-ITM8','PF-G8PA-FK40-YHPV','PF-V02H-UOC8-XXGR',
+        'PF-2WTX-C3KY-0UEJ','PF-TUXL-4OM9-S5ZT','PF-ODCZ-3PKG-84RP','PF-X6TP-0Q2T-BLGG','PF-WEY7-Z6VT-60UB',
+        'PF-LB3K-YIA7-8L0E','PF-JYRU-1PCN-5U8U','PF-H0TW-7IH6-7ECF','PF-K5OR-17SO-6FLY','PF-IRC6-EROD-CZFE',
+        'PF-EY83-Q1WD-UWK5','PF-UQVA-6ZJB-PWJA','PF-ENR4-0HIA-OCYL','PF-8H8Q-51BC-MOVH','PF-CSFM-JSF0-9O8F',
+        'PF-AP6I-K5N8-K1PK','PF-7IDF-2Z14-UQBD','PF-JIKC-6A74-TX8S','PF-1JN0-RQY6-MOGT','PF-V6PF-8LZV-K05G',
+        'PF-NVG5-AQWY-YNYD','PF-OHY0-P1R5-ZFRQ','PF-NDB0-P3M3-SYKN','PF-7R26-U3RL-PI1Q','PF-UOJY-UP35-INAQ',
+        'PF-L6ST-1FLO-JUNG','PF-ZVL5-UE7O-MBD9','PF-X0AM-OP94-NSPQ','PF-TJBH-NEL3-675X','PF-LVF6-928E-6UXB',
+        'PF-9THU-RR6K-MNOX','PF-L5EW-RCP8-X50G','PF-PMJB-TEI2-QE89','PF-26T9-8EYE-3VG4','PF-MV4Y-KFZ8-28AN',
+        'PF-DH7E-ULQ5-0YEK','PF-M0AK-V19C-RWQ6','PF-N48Y-HY34-7SXD','PF-2BS3-XUHX-EVUS','PF-GRCD-571D-R9LQ',
+        'PF-K0YS-NP27-1J4T','PF-ZWVV-WGFR-SIUE','PF-DDL0-WJUU-1DHS','PF-VV2X-WYTN-1ZAX','PF-KU0C-O7GB-83B6',
+        'PF-XQWT-6YHK-89D7','PF-G75S-8IJZ-SB5S','PF-5QXI-PNAS-9YZ4','PF-TTBG-16XP-1CIO','PF-INLZ-Y7QQ-7EU9',
+        'PF-XP0K-CZ60-46RU','PF-8ETJ-ZZTU-DJ8T','PF-R7EC-W0PI-3HWH','PF-K6ET-75H9-XY8K','PF-Y7MV-53BO-WK0D',
+        'PF-A56K-EX87-5M3L','PF-X2TL-B0Y7-LJ5T','PF-GRA7-AIAM-QV7Q','PF-KMOZ-K86C-YMCJ','PF-1L9K-PMLZ-244Q',
+        'PF-9QKW-6TLW-ISWK','PF-NZXS-6F1E-0Y7R','PF-LNV8-QQEQ-3MLN','PF-A7N2-ZECJ-737R','PF-4UV7-DSPM-KFG3',
+        'PF-Y3KV-PFX6-56OP','PF-WJU3-AGR1-M57O','PF-4BJ3-9I6N-A8SO','PF-5CLE-09TX-R6UR','PF-C01K-RIPK-AF7D',
+        'PF-ABMI-MCYM-U221','PF-TKRG-HW7F-58R1','PF-4IHM-ZX7V-QJMZ','PF-I543-VIYX-P4SU','PF-5LFT-JVKQ-BTRZ',
+        'PF-H8V2-BMOC-GF8K','PF-5K6N-XUH2-91O8','PF-E3GY-PRCH-CSA9','PF-Q4D7-WSG8-5KWT','PF-1PNW-190L-NWY0',
+        'PF-AIJ1-0WUS-92V5','PF-N4E2-VC16-QNFX','PF-ZSRH-7CTT-FLSU','PF-SAY4-PQ65-91C1','PF-QFRJ-E3OD-WLQV',
+        'PF-TGNR-4110-T8WC','PF-5LLG-HT7H-EMM8','PF-Z3O6-MZ4C-GELP','PF-LQJS-359I-5QFI','PF-KYJJ-KSOJ-STCM',
+        'PF-J2GZ-KB9F-WFTZ','PF-JRAR-UJLE-DHDA','PF-KRH4-8B8J-XLVV','PF-R0AJ-ZPSV-425M','PF-IA7A-XZFL-FIT1'
+    ];
+    var TRIAL_DAYS = 7;
 
-        var gate = document.getElementById('lgGate');
+    function isValid(k) {
+        for (var i = 0; i < KEYS.length; i++) {
+            if (KEYS[i] === k) return true;
+        }
+        return false;
+    }
+
+    function checkTrialValid() {
+        var start = localStorage.getItem('pf-trial');
+        if (!start) return false;
+        var days = (Date.now() - parseInt(start)) / 86400000;
+        return Math.ceil(TRIAL_DAYS - days) > 0;
+    }
+
+    function isLicensed() {
+        var saved = localStorage.getItem('pf-key');
+        if (saved && isValid(saved.trim())) return true;
+        if (checkTrialValid()) return true;
+        return false;
+    }
+
+    function isFreeMode(mode) {
+        return FREE_MODES.indexOf(mode) !== -1;
+    }
+
+    // Wire up upgrade modal
+    (function() {
+        var banner = document.getElementById('freeBanner');
+        var modal = document.getElementById('upgradeModal');
         var input = document.getElementById('lgKey');
         var btn = document.getElementById('lgBtn');
         var err = document.getElementById('lgErr');
         var ok = document.getElementById('lgOk');
         var buyLink = document.getElementById('lgBuy');
         var trialBtn = document.getElementById('lgTrial');
-        var trialInfo = document.getElementById('lgTrialInfo');
+        var unlockLink = document.getElementById('unlockAllLink');
 
-        if (!gate) return;
-
-        function isValid(k) {
-            for (var i = 0; i < KEYS.length; i++) {
-                if (KEYS[i] === k) return true;
+        function showUpgrade() {
+            err.style.display = 'none';
+            ok.style.display = 'none';
+            input.value = '';
+            btn.disabled = false;
+            btn.textContent = 'Unlock PromptForge';
+            // Reset trial button
+            trialBtn.style.display = '';
+            var saved = localStorage.getItem('pf-key');
+            if (saved && isValid(saved.trim())) {
+                trialBtn.style.display = 'none';
             }
-            return false;
-        }
-
-        function hideGate() {
-            gate.style.opacity = '0';
-            gate.style.transition = 'opacity 0.4s ease';
-            setTimeout(function() { gate.classList.remove('visible'); }, 400);
-        }
-
-        function showGate() { gate.classList.add('visible'); }
-
-        function checkTrial() {
-            var start = localStorage.getItem('pf-trial');
-            if (start) {
-                var days = (Date.now() - parseInt(start)) / 86400000;
-                var left = Math.ceil(TRIAL_DAYS - days);
-                if (left > 0) {
-                    trialInfo.textContent = 'Trial: ' + left + ' day' + (left > 1 ? 's' : '') + ' left';
-                    btn.textContent = 'Continue Trial';
-                    btn.onclick = function() { hideGate(); };
-                    return true;
-                } else {
-                    trialInfo.textContent = 'Trial expired. Please purchase a license.';
-                    btn.style.display = 'none';
-                }
+            if (checkTrialValid()) {
+                var start = parseInt(localStorage.getItem('pf-trial'));
+                var left = Math.ceil(TRIAL_DAYS - (Date.now() - start) / 86400000);
+                trialBtn.textContent = 'Trial: ' + left + ' day' + (left > 1 ? 's' : '') + ' left';
+            } else {
+                trialBtn.textContent = 'Try Free for 7 Days';
             }
-            return false;
+            modal.classList.add('visible');
+        }
+        // Expose for locked button clicks
+        window.showUpgradeModal = showUpgrade;
+
+        function hideUpgrade() { modal.classList.remove('visible'); }
+
+        function updateBannerVisibility() {
+            if (isLicensed()) {
+                banner.style.display = 'none';
+            } else {
+                banner.style.display = '';
+            }
         }
 
-        // Check saved state
-        var saved = localStorage.getItem('pf-key');
-        if (saved && isValid(saved.trim())) {
-            // Already licensed — stay hidden
-        } else if (saved) {
-            localStorage.removeItem('pf-key');
-            showGate();
-            checkTrial();
-        } else {
-            showGate();
-            checkTrial();
+        // Unlock All link in banner
+        if (unlockLink) {
+            unlockLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showUpgrade();
+            });
         }
 
-        btn.onclick = function() {
+        // Buy link
+        if (buyLink) buyLink.href = 'https://diverseinc.gumroad.com/l/gujne';
+
+        // License key submit
+        btn.addEventListener('click', function() {
             var key = input.value.trim();
             if (!key) { err.textContent = 'Enter a license key'; err.style.display = ''; ok.style.display = 'none'; return; }
             if (isValid(key)) {
@@ -1031,26 +1161,52 @@
                 ok.style.display = '';
                 err.style.display = 'none';
                 btn.disabled = true;
-                setTimeout(hideGate, 800);
+                setTimeout(function() {
+                    hideUpgrade();
+                    updateBannerVisibility();
+                    // Re-render buttons to remove lock icons
+                    if (typeof window.renderModeButtons === 'function') {
+                        window.renderModeButtons(document.getElementById('modeSearch').value);
+                    }
+                }, 800);
             } else {
                 err.textContent = 'Invalid key. Check your email from Gumroad.';
                 err.style.display = '';
                 ok.style.display = 'none';
             }
-        };
+        });
 
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') btn.click();
         });
 
-        trialBtn.onclick = function() {
+        // Trial button
+        trialBtn.addEventListener('click', function() {
             if (!localStorage.getItem('pf-trial')) {
                 localStorage.setItem('pf-trial', Date.now().toString());
             }
-            hideGate();
-        };
+            // If trial is already active, this still works
+            hideUpgrade();
+            updateBannerVisibility();
+            if (typeof window.renderModeButtons === 'function') {
+                window.renderModeButtons(document.getElementById('modeSearch').value);
+            }
+        });
 
-        buyLink.href = 'https://diverseinc.gumroad.com/l/gujne';
+        // Close modal on overlay click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) hideUpgrade();
+        });
+
+        // Close modal on Escape (handled by global handler already, but ensure it works)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('visible')) {
+                hideUpgrade();
+            }
+        });
+
+        // Initial banner visibility
+        updateBannerVisibility();
     })();
 
     // ===================================================================
@@ -1251,13 +1407,17 @@
             var filtered = allGens.filter(function(g) {
                 return g.label.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
             });
+            var licensed = isLicensed();
             modeButtonsContainer.innerHTML = filtered.map(function(g) {
                 var favClass = favourites.indexOf(g.mode) !== -1 ? 'favourite' : '';
                 var batchClass = batchModes.indexOf(g.mode) !== -1 ? 'selected-batch' : '';
                 var star = favourites.indexOf(g.mode) !== -1 ? '⭐' : '☆';
                 var del = g.isCustom ? '<span class="delete-custom" data-mode="' + g.mode + '" style="margin-left:4px; cursor:pointer; opacity:0.7;">✕</span>' : '';
-                return '<button class="mode-btn ' + favClass + ' ' + batchClass + '" data-mode="' + g.mode + '">' +
-                    g.icon + ' ' + g.label +
+                var locked = !licensed && !isFreeMode(g.mode) && !g.isCustom;
+                var lockIcon = locked ? ' 🔒' : '';
+                var lockedClass = locked ? ' locked' : '';
+                return '<button class="mode-btn ' + favClass + ' ' + batchClass + lockedClass + '" data-mode="' + g.mode + '">' +
+                    g.icon + ' ' + g.label + lockIcon +
                     ' <span class="star-btn" data-mode="' + g.mode + '">' + star + '</span>' +
                     del + '</button>';
             }).join('');
@@ -1268,6 +1428,11 @@
                 btn.addEventListener('click', function(e) {
                     if (e.target.classList.contains('star-btn') || e.target.classList.contains('delete-custom')) return;
                     var mode = btn.dataset.mode;
+                    // Check if locked
+                    if (!licensed && !isFreeMode(mode) && mode.indexOf('custom_') !== 0) {
+                        if (typeof window.showUpgradeModal === 'function') window.showUpgradeModal();
+                        return;
+                    }
                     if (batchCheckbox.checked) {
                         var idx = batchModes.indexOf(mode);
                         if (idx !== -1) batchModes.splice(idx, 1);
@@ -1304,6 +1469,8 @@
         }
 
         modeSearch.addEventListener('input', function() { renderModeButtons(modeSearch.value); });
+        // Expose for license system to re-render after unlock
+        window.renderModeButtons = renderModeButtons;
         batchCheckbox.addEventListener('change', function() {
             batchModes = [];
             setMode(null);
@@ -1966,6 +2133,14 @@
             if (!ind) { industryInput.focus(); showToast('Enter an industry'); return; }
             var modes = batchCheckbox.checked ? batchModes : (currentMode ? [currentMode] : []);
             if (modes.length === 0) { showToast('Select a mode'); return; }
+            // License check: block locked modes from generating
+            if (!isLicensed()) {
+                var hasLocked = modes.some(function(m) { return !isFreeMode(m) && m.indexOf('custom_') !== 0; });
+                if (hasLocked) {
+                    if (typeof window.showUpgradeModal === 'function') window.showUpgradeModal();
+                    return;
+                }
+            }
             if (modes.indexOf('problem') !== -1 && selectedProblems.length === 0) {
                 problemsValidation.style.display = 'block';
                 return;
