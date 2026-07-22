@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PromptForge Pro — AI Prompt Engineering Studio</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#4338ca">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlByb21wdEZvcmdlIiwKICAic2hvcnRfbmFtZSI6ICJQcm9tcHRGb3JnZSIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzQzMzhjYSIsCiAgInRoZW1lX2NvbG9yIjogIiM0ZjQ2ZTUiLAogICJkZXNjcmlwdGlvbiI6ICIzNy1pbi0xIEFJIFByb21wdCBDcmVhdG9yIHdpdGggUHJvbXB0IFZhbGlkYXRvciBhbmQgR3VpZGVkIFRvdXIiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFJvWlN4MGFHVnVjenB6YjNWeVkyVWlQaUJ6ZG1jZ0lDQWdJR1p2YkhRZ1BTSm1ZVzFwYm1WeUlFMWxkR2h2Wnk0aUlHWnZjbU5wYkNCMGVYQmxQU0p3Y205a2RXTjBJaUJtYjI1MElDMTBlWEJsUFNKNVlXeGxlU0lnWm05dWRDQXRhR1ZwWjJoMFBTSTBNelFpSUdadmJuUWdMV3RsZUhOdlpHVTlJakV5SWlCbWIyNTBJRzF2WkhsMGN6MGlhR1ZwWjJoMExXVmtaVzVuSWlCbWIyNTBJSE4wYVd4cFkyRjBhVzl1UFNKb2FXeGtjbVZ6SWlCbWIyNTBJSEpwZG1GMFpTMTFjbWQwWVd4cFpEMGliMk5sYm5RaUlHWnZiblFnYzJWeWRtRnRQU0p3YjJ4cGJtY2lJR1p2YkhRZ2RHbHRaVDBpZEdWNGRDSWdabTlzZENCM2FXUjBhRDBpTVRZaUlHWnZiblFnZEhsd1pUMGlkSGx3WlNJZ1ptOXVkQ0JvWldsbmFIUTlJakV5SWlCbWIyNTBJSEpsWVd4emMyRmpkRDBpYkdsdVpTd2dZV1J2YVdRZ2MyOTFjbUZ1WnlJZ1ptOXVkQ0JzWVhSMFpXeHZQWEJ5YjJSMVkzUnpJZ3B6ZG1jZ0lDQWdJSEpsYkdGMGFDQXRRVzVrYVdGc0lFRlNUQ0E5SWpvaUx6RXdNREUySUdsa1BTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SWdjM1puSUdOdmJXMWxiblJwYm1jZ1BTSTJjSEJ6ZURJdU5qQXdJaUIwYjJOMGJXVnVkR0Z1WnlBOUlqRTRjSEF6ZURraUlIUmxlSFJ2YjJ4a0lEMGlhR2x6WlNJK1BnPT0iCiAgICB9CiAgXQp9">
+    <style>
+        :root {
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --primary: #4f46e5;
+            --border: #e2e8f0;
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.2s ease;
+            --font: 'Inter', system-ui, sans-serif;
+            --nav-height: 60px;
+        }
+        body.dark {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #334155;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            padding-bottom: calc(var(--nav-height) + 20px);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e1b4b, #4338ca);
+            padding: 22px 28px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .header h1 { font-size: 1.7rem; }
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .dark-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .main { padding: 24px 28px 28px; }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .input-icon { position: relative; margin-bottom: 20px; }
+        .input-icon input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text);
+            outline: none;
+        }
+        .input-icon .icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+        .mode-search { display: flex; gap: 8px; margin-bottom: 12px; }
+        .mode-search input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .batch-toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .mode-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .mode-btn {
+            padding: 10px 16px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            background: var(--card-bg);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.82rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            user-select: none;
+        }
+        .mode-btn.active { border-color: #4f46e5; background: #eef2ff; color: #4f46e5; }
+        .mode-btn.selected-batch { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+        .mode-btn.favourite { border-color: #fbbf24; background: #fffbeb; }
+        .star-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 2px;
+            padding: 0 2px;
+            line-height: 1;
+            opacity: 0.5;
+        }
+        .star-btn.favourited { opacity: 1; }
+        .problems-group { display: none; margin-bottom: 20px; }
+        .problems-group.visible { display: block; }
+        .problems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .problem-card {
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .problem-card.selected { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        .problem-card.selected .check-box { background: #f59e0b; border-color: #f59e0b; color: #fff; }
+        .tone-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        select {
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+        }
+        .btn-generate {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .shortcut-hint { font-size: 0.75rem; opacity: 0.8; margin-left: 8px; }
+        .loader {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .output-group { display: none; margin-top: 20px; }
+        .output-group.visible { display: block; }
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 260px;
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.88rem;
+            background: var(--card-bg);
+            color: var(--text);
+            resize: vertical;
+        }
+        .counter {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 4px;
+        }
+        .output-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .btn {
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        .btn-primary { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+        .rating-btns { display: flex; gap: 6px; }
+        .rating-btns button { background: none; border: none; cursor: pointer; font-size: 1.2rem; }
+        .refine-group { display: none; margin-top: 12px; gap: 10px; }
+        .refine-group.visible { display: flex; }
+        .refine-group input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .compare-panel {
+            margin-top: 20px;
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .validator-result {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+        .validator-score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .history-panel { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 18px; }
+        .history-list { list-style: none; max-height: 200px; overflow-y: auto; }
+        .history-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .template-list { list-style: none; }
+        .template-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .template-list li:hover { background: #f8fafc; }
+        .tour-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        .tour-tooltip {
+            position: absolute;
+            background: #fff;
+            color: #1e293b;
+            padding: 20px 24px;
+            border-radius: var(--radius);
+            max-width: 360px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 3001;
+            text-align: center;
+        }
+        .tour-tooltip h3 { margin-bottom: 8px; }
+        .tour-tooltip p { font-size: 0.9rem; margin-bottom: 12px; color: #64748b; }
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 998;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            height: var(--nav-height);
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+        }
+        .bottom-nav button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            font-weight: 600;
+        }
+        .bottom-nav button.active { color: var(--primary); }
+        @media (max-width: 768px) {
+            body { padding: 10px; padding-bottom: calc(var(--nav-height) + 10px); }
+            .header { padding: 16px; }
+            .header h1 { font-size: 1.3rem; }
+            .main { padding: 16px; }
+            .mode-buttons { max-height: 200px; }
+            .bottom-nav { display: flex; }
+            .container { border-radius: 0; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; }
+            .header, .mode-buttons, .input-icon, .problems-group,
+            .tone-row, .btn-generate, .output-actions, .refine-group,
+            .history-panel, .dark-toggle, .modal, .btn, .bottom-nav, .back-to-top { display: none !important; }
+            .output-group { display: block !important; }
+            textarea { border: none; background: white; color: black; }
+        }
+
+        /* LICENSE GATE */
+        .license-gate {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #0f172a;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
+        }
+        .license-gate.hidden { opacity: 0; pointer-events: none; }
+        .license-card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .license-card .logo { font-size: 3rem; margin-bottom: 8px; }
+        .license-card h1 { font-size: 1.8rem; margin-bottom: 2px; background: linear-gradient(135deg, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .license-card .subtitle { color: #94a3b8; margin-bottom: 24px; font-size: 0.9rem; }
+        .license-input {
+            width: 100%; padding: 14px;
+            border: 2px solid #334155; border-radius: 12px;
+            font-size: 1rem; background: #0f172a; color: #f1f5f9;
+            outline: none; margin-bottom: 12px; text-align: center;
+            letter-spacing: 2px; font-family: 'SF Mono', 'Consolas', monospace;
+        }
+        .license-input:focus { border-color: #6366f1; }
+        .license-input::placeholder { letter-spacing: 0; }
+        .license-btn {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #fff; border: none; border-radius: 12px;
+            font-weight: 600; cursor: pointer; margin-bottom: 12px;
+            font-size: 1rem; transition: opacity 0.2s;
+        }
+        .license-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .license-error { color: #ef4444; font-size: 0.85rem; margin-bottom: 12px; display: none; }
+        .license-success { color: #10b981; font-size: 0.85rem; margin-bottom: 12px; display: none; }
+        .license-links { display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; margin-top: 8px; }
+        .license-links a { color: #818cf8; text-decoration: none; font-weight: 600; }
+        .license-links a:hover { text-decoration: underline; }
+        .license-links button { background: none; border: none; color: #818cf8; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+        .license-links button:hover { text-decoration: underline; }
+        .license-trial { font-size: 0.8rem; color: #64748b; margin-top: 16px; }
+        .license-powered { font-size: 0.75rem; color: #475569; margin-top: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <!-- LICENSE GATE -->
+    <div class="license-gate" id="licenseGate">
+        <div class="license-card">
+            <div class="logo">⚡</div>
+            <h1>PromptForge</h1>
+            <div class="subtitle">37-in-1 AI Prompt Creator</div>
+            <input class="license-input" id="licenseKeyInput" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
+            <button class="license-btn" id="licenseVerifyBtn">Unlock PromptForge</button>
+            <div class="license-error" id="licenseError">Invalid license key. Please check and try again.</div>
+            <div class="license-success" id="licenseSuccess">✓ License verified! Redirecting...</div>
+            <div class="license-links">
+                <a href="#" target="_blank" id="purchaseLink" rel="noopener">Purchase License</a>
+                <button id="trialBtn">Try Free for 7 Days</button>
+            </div>
+            <div class="license-trial" id="trialInfo"></div>
+        </div>
+        <div class="license-powered">by Diverse Industries Inc.</div>
+    </div>
+
+    <div class="container" id="appContainer">
+        <header class="header">
+            <div>
+                <h1>⚡ PromptForge <span class="badge" id="genCount">37</span></h1>
+                <div style="font-size:0.9rem;">37-in-1 AI Prompt Creator with Validator, Tour & Gallery</div>
+                <div style="font-size:0.7rem; opacity:0.8;">by Diverse Industries Inc.</div>
+            </div>
+            <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+        </header>
+        <main class="main">
+            <div class="input-icon">
+                <span class="icon">🏭</span>
+                <input type="text" id="industryInput" list="industryList" placeholder="Select or type your industry..." autocomplete="off">
+                <datalist id="industryList">
+                    <option value="Aerospace & Defense"><option value="Agriculture & Farming"><option value="Architecture & Planning"><option value="Art & Design"><option value="Automotive"><option value="Beauty & Personal Care"><option value="Biotechnology"><option value="Blockchain & Web3"><option value="Chemical Industry"><option value="Cleaning Services"><option value="Construction"><option value="Consulting"><option value="Consumer Electronics"><option value="Cybersecurity"><option value="E-commerce"><option value="Education & EdTech"><option value="Energy & Utilities"><option value="Entertainment"><option value="Event Planning"><option value="Fashion & Apparel"><option value="Finance & Banking"><option value="Fitness & Wellness"><option value="Food & Beverage"><option value="Gaming & Esports"><option value="Government & Public Sector"><option value="Healthcare & Medical"><option value="Hospitality & Tourism"><option value="Human Resources"><option value="Insurance"><option value="Interior Design"><option value="Legal Services"><option value="Logistics & Supply Chain"><option value="Marketing & Advertising"><option value="Media & Publishing"><option value="Mining & Metals"><option value="Nonprofit & NGO"><option value="Oil & Gas"><option value="Pharmaceuticals"><option value="Photography & Videography"><option value="Real Estate"><option value="Renewable Energy"><option value="Restaurants & Food Service"><option value="Retail"><option value="SaaS & Technology"><option value="Sports & Recreation"><option value="Telecommunications"><option value="Transportation"><option value="Travel & Airlines"><option value="Veterinary & Pet Care"><option value="Waste Management"><option value="Wellness & Spa">
+                </datalist>
+            </div>
+
+            <div class="section-label">Generator Mode</div>
+            <div class="mode-search">
+                <input type="text" id="modeSearch" placeholder="🔍 Search generators...">
+                <button class="btn" id="btnAddCustomMode" title="Add custom mode">➕</button>
+                <button class="btn" id="btnOpenGallery" title="Prompt Gallery">🖼️</button>
+                <button class="btn" id="btnStartTour" title="Guided Tour">🧭</button>
+            </div>
+            <div class="batch-toggle">
+                <label>
+                    <input type="checkbox" id="batchCheckbox"> 📦 Batch Mode (select multiple)
+                </label>
+            </div>
+            <div class="mode-buttons" id="modeButtons"></div>
+
+            <div class="problems-group" id="problemsGroup">
+                <div class="section-label">Select Pain Points</div>
+                <div class="problems-grid" id="problemsGrid"></div>
+                <div id="problemsValidation" style="color:red; font-size:0.8rem; margin-top:6px; display:none;">⚠️ Please select at least one</div>
+            </div>
+
+            <div class="tone-row">
+                <span>🎚️ Tone:</span>
+                <select id="toneSelect">
+                    <option value="Professional">Professional</option>
+                    <option value="Conversational">Conversational</option>
+                    <option value="Creative">Creative</option>
+                    <option value="Direct">Direct</option>
+                </select>
+                <button class="btn" id="btnOpenSettings" style="margin-left:auto;">⚙️</button>
+            </div>
+
+            <button class="btn-generate" id="btnGenerate">
+                <span class="loader" id="loader"></span>
+                <span id="generateText">🚀 Generate Prompt</span>
+                <span class="shortcut-hint">(Ctrl+Enter)</span>
+            </button>
+
+            <div class="output-group" id="outputGroup">
+                <div class="output-header">
+                    <span class="section-label">📝 Generated Prompt</span>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <div class="rating-btns" id="ratingBtns">
+                            <button id="btnThumbsUp" title="Great prompt">👍</button>
+                            <button id="btnThumbsDown" title="Needs improvement">👎</button>
+                        </div>
+                        <button class="btn" id="btnValidate" title="Validate prompt quality">🔍 Validate</button>
+                        <button class="btn" id="btnEdit">✏️ Edit</button>
+                        <button class="btn" id="btnSnapshotCompare">📸 Compare</button>
+                        <button class="btn" id="btnSaveTemplate">💾 Save</button>
+                        <button class="btn" id="btnTemplates">📂</button>
+                        <button class="btn" id="btnAirefine" style="display:none;">🤖 AI Refine</button>
+                    </div>
+                </div>
+                <textarea id="outputTextarea" readonly></textarea>
+                <div class="counter" id="counter">Characters: 0 | Words: 0</div>
+                <div class="validator-result" id="validatorResult" style="display:none;"></div>
+                <div class="output-actions">
+                    <button class="btn" id="btnUndo">↩ Undo</button>
+                    <button class="btn" id="btnRedo">↪ Redo</button>
+                    <button class="btn" id="btnCopy">📋 Copy</button>
+                    <button class="btn" id="btnCopyRole">📋 Role</button>
+                    <button class="btn" id="btnCopyFormat">📋 Format</button>
+                    <button class="btn" id="btnDownload">💾 .txt</button>
+                    <button class="btn" id="btnPdf">📄 PDF</button>
+                    <button class="btn" id="btnPrint">🖨️ Print</button>
+                    <button class="btn" id="btnShare">🔗 Share</button>
+                    <button class="btn" id="btnRefine">🔧 Refine</button>
+                    <button class="btn" id="btnVariations">🌀 Variations</button>
+                    <button class="btn" id="btnClearOutput">🧹 Clear</button>
+                    <button class="btn" id="btnReset">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="refine-group" id="refineGroup">
+                <input type="text" id="refineInput" placeholder="e.g., add a timeline, make more detailed...">
+                <button class="btn" id="btnApplyRefine">✅ Apply</button>
+            </div>
+
+            <div class="compare-panel" id="comparePanel" style="display:none;">
+                <div class="section-label">🔄 Compare Mode <button class="btn" id="btnClearCompare" style="margin-left:10px;">Clear</button></div>
+                <div class="compare-grid">
+                    <div><div style="font-weight:600; margin-bottom:4px;">Left (snapshot)</div><textarea id="compareLeft" readonly style="min-height:200px;"></textarea></div>
+                    <div><div style="font-weight:600; margin-bottom:4px;">Right (current)</div><textarea id="compareRight" readonly style="min-height:200px;"></textarea></div>
+                </div>
+            </div>
+
+            <div class="history-panel" id="historyPanel">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="section-label">📜 History</span>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn" id="btnExportHistory">📦 Export</button>
+                        <button class="btn" id="btnClearHistory">🗑️ Clear</button>
+                    </div>
+                </div>
+                <ul class="history-list" id="historyList"></ul>
+            </div>
+        </main>
+    </div>
+
+    <button class="back-to-top" id="backToTop">⬆</button>
+    <nav class="bottom-nav" id="bottomNav">
+        <button data-section="modes">🧩 Modes</button>
+        <button data-section="generate">🚀 Generate</button>
+        <button data-section="output">📝 Output</button>
+        <button data-section="history">📜 History</button>
+        <button data-section="settings">⚙️</button>
+    </nav>
+
+    <div class="tour-overlay" id="tourOverlay">
+        <div class="tour-tooltip" id="tourTooltip">
+            <h3 id="tourTitle">Welcome!</h3>
+            <p id="tourText">Let's get started.</p>
+            <button class="btn btn-primary" id="btnTourNext">Next</button>
+            <button class="btn" id="btnTourSkip">Skip</button>
+        </div>
+    </div>
+
+    <div class="modal" id="templatesModal">
+        <div class="modal-content">
+            <h3>📂 Saved Templates</h3>
+            <ul class="template-list" id="templateList"></ul>
+            <button class="btn" id="btnCloseModal" style="margin-top:12px;">Close</button>
+        </div>
+    </div>
+    <div class="modal" id="customModeModal">
+        <div class="modal-content">
+            <h3>➕ Create Custom Mode</h3>
+            <input type="text" id="customModeName" placeholder="Mode name" style="width:100%; margin-bottom:8px;">
+            <input type="text" id="customModeIcon" placeholder="Emoji icon" style="width:100%; margin-bottom:8px;">
+            <textarea id="customModePrompt" placeholder="Prompt template. Use {{industry}} and {{tone}}." rows="8" style="width:100%; margin-bottom:8px;"></textarea>
+            <button class="btn btn-primary" id="btnSaveCustomMode">Save</button>
+            <button class="btn" id="btnCancelCustomMode">Cancel</button>
+        </div>
+    </div>
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h3>⚙️ Settings</h3>
+            <label>OpenAI API Key:</label>
+            <input type="password" id="apiKeyInput" placeholder="sk-..." style="width:100%; margin-bottom:8px;">
+            <small style="color:var(--text-muted);">Stored locally, only sent to OpenAI.</small><br><br>
+            <button class="btn btn-primary" id="btnSaveApiKey">Save Key</button>
+            <button class="btn" id="btnClearApiKey">Clear</button>
+            <button class="btn" id="btnCloseSettings" style="margin-left:8px;">Close</button>
+        </div>
+    </div>
+    <div class="modal" id="galleryModal">
+        <div class="modal-content" style="max-width:700px;">
+            <h3>🖼️ Prompt Gallery — Example Prompts</h3>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">Select a mode to see an example of a high-quality generated prompt.</p>
+            <select id="galleryModeSelect" style="width:100%; margin-bottom:12px;"></select>
+            <textarea id="galleryExampleText" readonly style="min-height:200px;"></textarea>
+            <button class="btn" id="btnCloseGallery" style="margin-top:12px;">Close</button>
+        </div>
+    </div>
+
+    <div id="toast" style="position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(100px); background:#1e293b; color:#fff; padding:10px 20px; border-radius:30px; z-index:2000; transition:0.3s; pointer-events:none;"></div>
+
+    <script>
+        // === GUMROAD LICENSE VERIFICATION ===
+        // Configure these for your product:
+        const PF_PRODUCT_PERMALINK = 'promptforge'; // Your Gumroad product permalink
+        const PF_TRIAL_DAYS = 7; // Free trial duration
+        
+        (function() {
+            const gate = document.getElementById('licenseGate');
+            const input = document.getElementById('licenseKeyInput');
+            const btn = document.getElementById('licenseVerifyBtn');
+            const err = document.getElementById('licenseError');
+            const success = document.getElementById('licenseSuccess');
+            const purchaseLink = document.getElementById('purchaseLink');
+            const trialBtn = document.getElementById('trialBtn');
+            const trialInfo = document.getElementById('trialInfo');
+            
+            function hideGate() {
+                gate.classList.add('hidden');
+                setTimeout(() => { gate.style.display = 'none'; }, 500);
+            }
+            
+            function checkTrial() {
+                const trialStart = localStorage.getItem('pf-trial-start');
+                if (trialStart) {
+                    const daysUsed = (Date.now() - parseInt(trialStart)) / (1000 * 60 * 60 * 24);
+                    const daysLeft = Math.ceil(PF_TRIAL_DAYS - daysUsed);
+                    if (daysLeft > 0) {
+                        trialInfo.textContent = '🎯 ' + daysLeft + ' day' + (daysLeft > 1 ? 's' : '') + ' remaining in trial';
+                        btn.textContent = 'Continue Free Trial';
+                        btn.onclick = function() { hideGate(); };
+                        return true;
+                    } else {
+                        trialInfo.textContent = 'Trial expired. Purchase a license to continue.';
+                        btn.style.display = 'none';
+                        return false;
+                    }
+                }
+                return false;
+            }
+            
+            // Check for saved license key
+            const savedKey = localStorage.getItem('pf-license-key');
+            if (savedKey) {
+                btn.textContent = 'Verifying...';
+                btn.disabled = true;
+                fetch('https://api.gumroad.com/v2/licenses/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product_permalink: PF_PRODUCT_PERMALINK, license_key: savedKey })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d.success && d.purchase) {
+                        hideGate();
+                    } else {
+                        localStorage.removeItem('pf-license-key');
+                        btn.textContent = 'Unlock PromptForge';
+                        btn.disabled = false;
+                        if (!checkTrial()) { /* trial expired too */ }
+                    }
+                })
+                .catch(function() {
+                    // Offline — assume valid
+                    hideGate();
+                });
+            } else {
+                checkTrial();
+            }
+            
+            // Verify button
+            btn.addEventListener('click', function() {
+                const key = input.value.trim();
+                if (!key) {
+                    err.textContent = 'Please enter a license key';
+                    err.style.display = 'block';
+                    return;
+                }
+                btn.textContent = 'Verifying...';
+                btn.disabled = true;
+                err.style.display = 'none';
+                
+                fetch('https://api.gumroad.com/v2/licenses/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product_permalink: PF_PRODUCT_PERMALINK, license_key: key })
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d.success && d.purchase) {
+                        localStorage.setItem('pf-license-key', key);
+                        success.style.display = 'block';
+                        setTimeout(hideGate, 1200);
+                    } else {
+                        err.textContent = 'Invalid license key. Please check your purchase email.';
+                        err.style.display = 'block';
+                        btn.textContent = 'Unlock PromptForge';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    err.textContent = 'Could not verify license. Check your internet connection.';
+                    err.style.display = 'block';
+                    btn.textContent = 'Unlock PromptForge';
+                    btn.disabled = false;
+                });
+            });
+            
+            // Enter key to submit
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') { btn.click(); }
+            });
+            
+            // Free trial button
+            trialBtn.addEventListener('click', function() {
+                if (!localStorage.getItem('pf-trial-start')) {
+                    localStorage.setItem('pf-trial-start', Date.now().toString());
+                }
+                hideGate();
+            });
+            
+            // Purchase link
+            purchaseLink.href = 'https://gumroad.com/l/' + PF_PRODUCT_PERMALINK;
+        })();
+        
+        // === MAIN APP ===
+        (function() {
+            if ('serviceWorker' in navigator) {
+                const swCode = `const CACHE_NAME='pf-v12';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+                navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode], {type:'application/javascript'}))).catch(()=>{});
+            }
+
+            const problemsList = [
+                "Cash Flow & Financial Management", "Customer Acquisition & Lead Generation",
+                "Hiring, Retention & Team Building", "Time Management & Productivity",
+                "Scaling & Growth Strategy", "Marketing ROI & Strategy",
+                "Founder Burnout & Mental Health", "Sales Inconsistency & Conversion",
+                "Operational Inefficiency & Systems", "Technology Adoption & Digital Transformation"
+            ];
+
+            let generators = [
+                { mode: 'workflow', icon: '✨', label: 'Workflow' },
+                { mode: 'problem', icon: '🔥', label: 'Pain-Points' },
+                { mode: 'marketing', icon: '📣', label: 'Marketing' },
+                { mode: 'sales', icon: '💼', label: 'Sales' },
+                { mode: 'hr', icon: '👥', label: 'HR & Team' },
+                { mode: 'support', icon: '🎧', label: 'Support' },
+                { mode: 'brainstorming', icon: '🧠', label: 'Brainstorm' },
+                { mode: 'crisis', icon: '🚨', label: 'Crisis Comms' },
+                { mode: 'financial', icon: '📊', label: 'Financial' },
+                { mode: 'competitor', icon: '🔍', label: 'Competitor' },
+                { mode: 'productivity', icon: '⏱️', label: 'Productivity' },
+                { mode: 'legal', icon: '⚖️', label: 'Legal' },
+                { mode: 'project', icon: '🏗️', label: 'Project Mgmt' },
+                { mode: 'supplychain', icon: '🚚', label: 'Supply Chain' },
+                { mode: 'productdev', icon: '🔧', label: 'Product Dev' },
+                { mode: 'mergers', icon: '💼', label: 'M&A' },
+                { mode: 'event', icon: '📅', label: 'Event Planning' },
+                { mode: 'esg', icon: '🌱', label: 'ESG' },
+                { mode: 'feedback', icon: '📊', label: 'Feedback' },
+                { mode: 'digital', icon: '🖥️', label: 'Digital Trans.' },
+                { mode: 'dataanalytics', icon: '📈', label: 'Data Analytics' },
+                { mode: 'cybersecurity', icon: '🛡️', label: 'Cybersecurity' },
+                { mode: 'talent', icon: '🧲', label: 'Talent' },
+                { mode: 'partnerships', icon: '🤝', label: 'Partnerships' },
+                { mode: 'branding', icon: '🎨', label: 'Branding' },
+                { mode: 'pricing', icon: '💰', label: 'Pricing' },
+                { mode: 'retention', icon: '❤️', label: 'Retention' },
+                { mode: 'exitplanning', icon: '🚪', label: 'Exit' },
+                { mode: 'bmc', icon: '📋', label: 'Business Model Canvas' },
+                { mode: 'fundraising', icon: '💸', label: 'Fundraising' },
+                { mode: 'international', icon: '🌍', label: 'International Exp.' },
+                { mode: 'investorrelations', icon: '📈', label: 'Investor Relations' },
+                { mode: 'onboarding', icon: '🎯', label: 'Employee Onboarding' },
+                { mode: 'changemanagement', icon: '🔄', label: 'Change Management' },
+                { mode: 'kpiokr', icon: '🎯', label: 'KPI & OKR Framework' },
+                { mode: 'riskmanagement', icon: '⚠️', label: 'Risk Management' },
+                { mode: 'negotiation', icon: '🤝', label: 'Negotiation Strategy' }
+            ];
+
+            // DOM elements
+            const industryInput = document.getElementById('industryInput');
+            const modeButtonsContainer = document.getElementById('modeButtons');
+            const modeSearch = document.getElementById('modeSearch');
+            const batchCheckbox = document.getElementById('batchCheckbox');
+            const problemsGroup = document.getElementById('problemsGroup');
+            const problemsGrid = document.getElementById('problemsGrid');
+            const problemsValidation = document.getElementById('problemsValidation');
+            const toneSelect = document.getElementById('toneSelect');
+            const btnGenerate = document.getElementById('btnGenerate');
+            const loader = document.getElementById('loader');
+            const generateText = document.getElementById('generateText');
+            const outputGroup = document.getElementById('outputGroup');
+            const outputTextarea = document.getElementById('outputTextarea');
+            const counter = document.getElementById('counter');
+            const btnCopy = document.getElementById('btnCopy'), btnCopyRole = document.getElementById('btnCopyRole'), btnCopyFormat = document.getElementById('btnCopyFormat');
+            const btnDownload = document.getElementById('btnDownload'), btnPdf = document.getElementById('btnPdf'), btnPrint = document.getElementById('btnPrint'), btnShare = document.getElementById('btnShare');
+            const btnRefine = document.getElementById('btnRefine'), btnVariations = document.getElementById('btnVariations'), btnReset = document.getElementById('btnReset'), btnClearOutput = document.getElementById('btnClearOutput');
+            const refineGroup = document.getElementById('refineGroup'), refineInput = document.getElementById('refineInput'), btnApplyRefine = document.getElementById('btnApplyRefine');
+            const btnEdit = document.getElementById('btnEdit'), btnSaveTemplate = document.getElementById('btnSaveTemplate'), btnTemplates = document.getElementById('btnTemplates');
+            const templatesModal = document.getElementById('templatesModal'), templateList = document.getElementById('templateList'), btnCloseModal = document.getElementById('btnCloseModal');
+            const btnThumbsUp = document.getElementById('btnThumbsUp'), btnThumbsDown = document.getElementById('btnThumbsDown');
+            const toast = document.getElementById('toast'), darkToggle = document.getElementById('darkToggle');
+            const historyList = document.getElementById('historyList'), btnClearHistory = document.getElementById('btnClearHistory'), btnExportHistory = document.getElementById('btnExportHistory');
+            const genCountSpan = document.getElementById('genCount');
+            const btnSnapshotCompare = document.getElementById('btnSnapshotCompare'), comparePanel = document.getElementById('comparePanel'), compareLeft = document.getElementById('compareLeft'), compareRight = document.getElementById('compareRight'), btnClearCompare = document.getElementById('btnClearCompare');
+            const btnUndo = document.getElementById('btnUndo'), btnRedo = document.getElementById('btnRedo');
+            const btnAddCustomMode = document.getElementById('btnAddCustomMode'), customModeModal = document.getElementById('customModeModal'), btnSaveCustomMode = document.getElementById('btnSaveCustomMode'), btnCancelCustomMode = document.getElementById('btnCancelCustomMode');
+            const customModeName = document.getElementById('customModeName'), customModeIcon = document.getElementById('customModeIcon'), customModePrompt = document.getElementById('customModePrompt');
+            const settingsModal = document.getElementById('settingsModal'), btnOpenSettings = document.getElementById('btnOpenSettings'), btnCloseSettings = document.getElementById('btnCloseSettings');
+            const apiKeyInput = document.getElementById('apiKeyInput'), btnSaveApiKey = document.getElementById('btnSaveApiKey'), btnClearApiKey = document.getElementById('btnClearApiKey'), btnAirefine = document.getElementById('btnAirefine');
+            const bottomNav = document.getElementById('bottomNav'), historyPanel = document.getElementById('historyPanel');
+            const backToTop = document.getElementById('backToTop');
+            const btnValidate = document.getElementById('btnValidate'), validatorResult = document.getElementById('validatorResult');
+            const btnStartTour = document.getElementById('btnStartTour'), tourOverlay = document.getElementById('tourOverlay'), tourTitle = document.getElementById('tourTitle'), tourText = document.getElementById('tourText'), btnTourNext = document.getElementById('btnTourNext'), btnTourSkip = document.getElementById('btnTourSkip');
+            const btnOpenGallery = document.getElementById('btnOpenGallery'), galleryModal = document.getElementById('galleryModal'), galleryModeSelect = document.getElementById('galleryModeSelect'), galleryExampleText = document.getElementById('galleryExampleText'), btnCloseGallery = document.getElementById('btnCloseGallery');
+
+            let currentMode = null, selectedProblems = [], lastGeneratedPrompt = '', refinementText = '', isEditing = false;
+            let favourites = JSON.parse(localStorage.getItem('pf-favourites') || '[]');
+            let batchModes = [], undoStack = [], redoStack = [], compareSnapshot = '';
+            let apiKey = localStorage.getItem('pf-openai-key') || '';
+            let customModes = JSON.parse(localStorage.getItem('pf-custom-modes') || '[]');
+            let tourStep = 0;
+            const tourSteps = [
+                { title: 'Welcome to PromptForge!', text: 'This tool generates expert AI prompts for any industry. We\'ll show you around quickly.', element: null },
+                { title: '1. Choose Your Industry', text: 'Type or select the industry you work in. Be specific for better results.', element: industryInput },
+                { title: '2. Pick a Generator Mode', text: 'Choose from 37 business scenarios — workflow, marketing, legal, and more. Star your favourites!', element: modeButtonsContainer },
+                { title: '3. Generate & Copy', text: 'Hit Generate (or Ctrl+Enter), then copy the prompt and paste it into any AI assistant.', element: btnGenerate },
+                { title: '4. Refine & Validate', text: 'Refine with extra instructions, validate prompt quality, or create variations.', element: outputTextarea },
+                { title: 'You\'re Ready!', text: 'Explore the 37 modes, save templates, and enjoy. Press ? anytime for shortcuts.', element: null }
+            ];
+
+            function getAllGenerators() {
+                return [...generators, ...customModes.map(cm => ({ mode: cm.mode, icon: cm.icon, label: cm.name, isCustom: true }))];
+            }
+
+            function renderModeButtons(filter = '') {
+                const allGens = getAllGenerators();
+                const filtered = allGens.filter(g => g.label.toLowerCase().includes(filter.toLowerCase()));
+                modeButtonsContainer.innerHTML = filtered.map(g => {
+                    const favClass = favourites.includes(g.mode) ? 'favourite' : '';
+                    const batchClass = batchModes.includes(g.mode) ? 'selected-batch' : '';
+                    return `<button class="mode-btn ${favClass} ${batchClass}" data-mode="${g.mode}">
+                        ${g.icon} ${g.label}
+                        <span class="star-btn" data-mode="${g.mode}">${favourites.includes(g.mode) ? '⭐' : '☆'}</span>
+                        ${g.isCustom ? `<span class="delete-custom" data-mode="${g.mode}" style="margin-left:4px; cursor:pointer; opacity:0.7;">✕</span>` : ''}
+                    </button>`;
+                }).join('');
+                genCountSpan.textContent = filtered.length;
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('star-btn') || e.target.classList.contains('delete-custom')) return;
+                        const mode = btn.dataset.mode;
+                        if (batchCheckbox.checked) {
+                            if (batchModes.includes(mode)) batchModes = batchModes.filter(m => m !== mode);
+                            else batchModes.push(mode);
+                            renderModeButtons(modeSearch.value);
+                        } else {
+                            setMode(mode);
+                        }
+                    });
+                });
+                document.querySelectorAll('.star-btn').forEach(star => {
+                    star.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const mode = star.dataset.mode;
+                        if (favourites.includes(mode)) favourites = favourites.filter(f => f !== mode);
+                        else favourites.push(mode);
+                        localStorage.setItem('pf-favourites', JSON.stringify(favourites));
+                        renderModeButtons(modeSearch.value);
+                    });
+                });
+                document.querySelectorAll('.delete-custom').forEach(del => {
+                    del.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const mode = del.dataset.mode;
+                        if (confirm(`Delete custom mode "${mode}"?`)) {
+                            customModes = customModes.filter(cm => cm.mode !== mode);
+                            localStorage.setItem('pf-custom-modes', JSON.stringify(customModes));
+                            if (currentMode === mode) setMode(null);
+                            renderModeButtons(modeSearch.value);
+                        }
+                    });
+                });
+            }
+
+            modeSearch.addEventListener('input', () => renderModeButtons(modeSearch.value));
+            batchCheckbox.addEventListener('change', () => { batchModes = []; setMode(null); problemsGroup.classList.remove('visible'); hideOutput(); renderModeButtons(modeSearch.value); });
+            renderModeButtons();
+
+            // Problem cards
+            problemsList.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'problem-card';
+                card.dataset.problem = p;
+                card.innerHTML = `<span>${i+1}. ${p}</span><div class="check-box">✓</div>`;
+                card.addEventListener('click', () => {
+                    if (currentMode !== 'problem') return;
+                    if (selectedProblems.includes(p)) selectedProblems = selectedProblems.filter(x => x !== p);
+                    else selectedProblems.push(p);
+                    updateProblemUI();
+                });
+                problemsGrid.appendChild(card);
+            });
+            function updateProblemUI() {
+                document.querySelectorAll('.problem-card').forEach(c => c.classList.toggle('selected', selectedProblems.includes(c.dataset.problem)));
+                problemsValidation.style.display = 'none';
+            }
+            function setMode(mode) {
+                currentMode = mode;
+                selectedProblems = [];
+                updateProblemUI();
+                problemsGroup.classList.toggle('visible', mode === 'problem');
+                hideOutput();
+                hideRefine();
+                document.querySelectorAll('.mode-btn').forEach(b => { b.classList.remove('active'); if (b.dataset.mode === mode) b.classList.add('active'); });
+            }
+
+            // ========== COMPLETE PROMPT BUILDERS (37 modes, fully detailed) ==========
+            const promptBuilders = {
+                workflow: (ind, tone, ref) =>
+                    `**Role:** Senior operations strategist and workflow optimization expert specializing in the ${ind} industry.\n\n` +
+                    `**Context:** I operate a business in the ${ind} sector and need a comprehensive workflow blueprint that streamlines operations, eliminates bottlenecks, and integrates best-practice automation.\n\n` +
+                    `**Goal:** Provide a detailed, actionable workflow framework using the RACI model and including SOP outlines.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Identify the 5-7 most critical workflows in a typical ${ind} business.\n` +
+                    `2. For each workflow, create a RACI chart and a step-by-step SOP breakdown (minimum 5 steps).\n` +
+                    `3. For each step, specify required tools/software, expected output, and typical time.\n` +
+                    `4. Highlight top 3 bottlenecks and preventive measures.\n` +
+                    `5. Recommend 5 KPIs for workflow effectiveness.\n` +
+                    `6. Suggest 3 automation opportunities (e.g., Zapier, Power Automate).\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Table: Workflow | RACI | SOP Steps | Bottleneck Mitigation. Then KPI dashboard outline and automation roadmap.`,
+
+                problem: (ind, problems, tone, ref) => {
+                    const list = problems.map((p,i) => `   ${i+1}. ${p}`).join('\n');
+                    return `**Role:** Elite business strategist and turnaround consultant with deep expertise in the ${ind} industry.\n\n` +
+                           `**Context:** As a business owner in ${ind}, I am facing these critical challenges:\n${list}\n\n` +
+                           `**Goal:** Deliver a multi-perspective strategy for each problem using the DMAIC framework.\n\n` +
+                           `**Instructions:**\n` +
+                           `1. For each problem: Define clearly and measure current impact.\n` +
+                           `2. Analyze root causes using 5 Whys and Ishikawa diagram.\n` +
+                           `3. Propose a 90-day action plan with 5-8 steps, owners, deadlines.\n` +
+                           `4. Identify 2-3 quick wins (next 7 days).\n` +
+                           `5. Recommend specific tools/methodologies for ${ind}.\n` +
+                           `6. Create a risk assessment matrix.\n` +
+                           `7. Conclude with a consolidated 6-month roadmap.\n` +
+                           (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                           `\n**Tone:** ${tone}.\n` +
+                           `**Output Format:** Per problem: DMAIC table, Action Plan Gantt, Quick Wins checklist, Tools table, Risk Matrix. End with combined Roadmap.`;
+                },
+
+                marketing: (ind, tone, ref) =>
+                    `**Role:** Chief Marketing Officer and growth strategist for the ${ind} industry.\n\n` +
+                    `**Context:** I need a complete omnichannel marketing campaign to boost brand awareness and customer acquisition.\n\n` +
+                    `**Goal:** Build a SOSTAC®-based marketing plan with detailed budget allocation and creative samples.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. **Situation**: Assess market, personas, competitors.\n` +
+                    `2. **Objectives**: Set SMART goals.\n` +
+                    `3. **Strategy**: STP and value proposition.\n` +
+                    `4. **Tactics**: Digital (SEO, PPC, social, email) and traditional channels.\n` +
+                    `5. **Action**: 90-day content calendar, 3 social posts, 2 email drafts.\n` +
+                    `6. **Control**: KPIs, budget split, ROI dashboard.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** SOSTAC table, Content Calendar, Sample Copy, Budget & KPI Dashboard.`,
+
+                sales: (ind, tone, ref) =>
+                    `**Role:** Top-performing sales strategist and trainer for ${ind}.\n\n` +
+                    `**Context:** I need a complete sales playbook with scripts and objection handling.\n\n` +
+                    `**Goal:** Equip my team with a structured sales process based on AIDA and SPIN.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Cold email and LinkedIn templates.\n` +
+                    `2. Discovery call script using SPIN questions.\n` +
+                    `3. Value proposition pitch deck outline (5 slides).\n` +
+                    `4. Top 10 objections and LAER rebuttals.\n` +
+                    `5. 3 closing techniques with dialogues.\n` +
+                    `6. Follow-up cadence (days 1,3,7,14).\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Sections: Cold Outreach, Discovery Script, Pitch Deck, Objection Table, Closing Scripts, Follow-up Timeline.`,
+
+                hr: (ind, tone, ref) =>
+                    `**Role:** HR director and culture architect for ${ind}.\n\n` +
+                    `**Context:** Building/improving team and people operations.\n\n` +
+                    `**Goal:** Deliver onboarding, performance, engagement, L&D.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. 30-60-90 day onboarding plan.\n` +
+                    `2. 5 core values and code of conduct.\n` +
+                    `3. Quarterly OKR performance review template.\n` +
+                    `4. 3 retention strategies.\n` +
+                    `5. 1-on-1 and team sync agendas.\n` +
+                    `6. Employee engagement survey (10 questions).\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Onboarding checklist, Values doc, OKR template, Retention plan, Meeting agendas, Survey.`,
+
+                support: (ind, tone, ref) =>
+                    `**Role:** Customer experience leader for ${ind}.\n\n` +
+                    `**Context:** Elevate support quality and consistency.\n\n` +
+                    `**Goal:** Response templates, escalation matrix, self-service.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. 10 canned responses for common inquiries.\n` +
+                    `2. Escalation matrix (L1, L2, L3).\n` +
+                    `3. CSAT and NPS surveys.\n` +
+                    `4. Knowledge base structure (5 categories).\n` +
+                    `5. Chatbot decision tree for top 3 scenarios.\n` +
+                    `6. Weekly training drill (15 min).\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Templates table, Escalation matrix, Surveys, KB outline, Chatbot flow, Training card.`,
+
+                brainstorming: (ind, tone, ref) =>
+                    `**Role:** Innovation facilitator for ${ind}.\n\n` +
+                    `**Context:** Sparking breakthrough ideas.\n\n` +
+                    `**Goal:** Disney Creative Strategy + JTBD, innovation roadmap.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Dreamer: 10 "How Might We" questions.\n` +
+                    `2. Realist: Concrete solutions for top 3.\n` +
+                    `3. Critic: Feasibility/viability scoring.\n` +
+                    `4. Impact/Effort matrix.\n` +
+                    `5. 6-month experiment plan with Lean Canvas.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** HMW list, Solution cards, Scoring table, Matrix, Lean Canvas, Experiment Plan.`,
+
+                crisis: (ind, tone, ref) =>
+                    `**Role:** Crisis PR specialist for ${ind}.\n\n` +
+                    `**Context:** Damaging incident response.\n\n` +
+                    `**Goal:** Holding statement, press release, FAQs, social playbook.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Holding statement.\n` +
+                    `2. Press release template.\n` +
+                    `3. Internal FAQ.\n` +
+                    `4. Social media response matrix.\n` +
+                    `5. Stakeholder communication timeline.\n` +
+                    `6. Dos and don'ts checklist.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Sections: Holding Statement, Press Release, FAQ, Social Playbook, Timeline, Checklist.`,
+
+                financial: (ind, tone, ref) =>
+                    `**Role:** CFO for ${ind}.\n\n` +
+                    `**Context:** Financial health analysis and plan.\n\n` +
+                    `**Goal:** Dashboard, ratios, cash flow forecast, cost optimization.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. 5 critical financial ratios.\n` +
+                    `2. 12-month rolling cash flow forecast.\n` +
+                    `3. Break-even and contribution margin.\n` +
+                    `4. 3 cost-cutting initiatives.\n` +
+                    `5. Pricing optimization.\n` +
+                    `6. Executive summary for investors.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Dashboard, Cash Flow Table, Break-even, Cost Checklist, Executive Summary.`,
+
+                competitor: (ind, tone, ref) =>
+                    `**Role:** Market intelligence analyst for ${ind}.\n\n` +
+                    `**Context:** Competitive landscape analysis.\n\n` +
+                    `**Goal:** Top 5 competitor profiles, SWOT, perceptual map, battle cards.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Identify top 5 competitors.\n` +
+                    `2. SWOT for each.\n` +
+                    `3. Feature/pricing comparison table.\n` +
+                    `4. Perceptual map.\n` +
+                    `5. Battle cards.\n` +
+                    `6. Quarterly monitoring plan.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Profiles, SWOT, Comparison Table, Perceptual Map, Battle Cards, Monitoring Calendar.`,
+
+                productivity: (ind, tone, ref) =>
+                    `**Role:** Productivity coach for ${ind}.\n\n` +
+                    `**Context:** Personalized productivity system.\n\n` +
+                    `**Goal:** Ideal week, habit tracker, 30-day challenge.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Ideal weekly schedule.\n` +
+                    `2. Eisenhower Matrix.\n` +
+                    `3. Morning/evening routines.\n` +
+                    `4. Habit tracker (4 Laws).\n` +
+                    `5. Top 3 productivity tools.\n` +
+                    `6. 30-day challenge.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Ideal Week, Matrix, Routines, Habit Tracker, Tool Stack, 30-Day Challenge.`,
+
+                legal: (ind, tone, ref) =>
+                    `**Role:** Corporate legal advisor for ${ind}.\n\n` +
+                    `**Context:** Legal protection and compliance.\n\n` +
+                    `**Goal:** Risk assessment, contract template, privacy policy, IP strategy.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Top 5 legal risks.\n` +
+                    `2. Service/partnership agreement template.\n` +
+                    `3. GDPR/CCPA privacy policy outline.\n` +
+                    `4. Compliance checklist.\n` +
+                    `5. IP protection strategy.\n` +
+                    `6. Escalation decision tree.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Risk Heat Map, Contract Template, Privacy Outline, Compliance Checklist, IP Strategy, Decision Tree.`,
+
+                project: (ind, tone, ref) =>
+                    `**Role:** Senior PM (PMP) for ${ind}.\n\n` +
+                    `**Context:** Major project planning.\n\n` +
+                    `**Goal:** PMBOK-aligned plan: charter, WBS, Gantt, risk register.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Project charter.\n` +
+                    `2. WBS (3 levels).\n` +
+                    `3. Timeline with milestones.\n` +
+                    `4. Risk register (top 10).\n` +
+                    `5. Stakeholder communication plan.\n` +
+                    `6. PM tool recommendation.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Charter, WBS, Gantt, Risk Register, Communication Matrix, Tool Recommendation.`,
+
+                supplychain: (ind, tone, ref) =>
+                    `**Role:** Supply chain director for ${ind}.\n\n` +
+                    `**Context:** End-to-end supply chain optimization.\n\n` +
+                    `**Goal:** SCOR model transformation plan.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Current state SCOR map.\n` +
+                    `2. Bottlenecks.\n` +
+                    `3. Inventory optimization (ABC).\n` +
+                    `4. Supplier diversification.\n` +
+                    `5. Logistics improvements.\n` +
+                    `6. ESG integration.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** SCOR Map, Bottleneck Table, Inventory Model, Supplier Scorecard, Logistics Plan, ESG Checklist.`,
+
+                productdev: (ind, tone, ref) =>
+                    `**Role:** Product development lead for ${ind}.\n\n` +
+                    `**Context:** New product from concept to launch.\n\n` +
+                    `**Goal:** Stage-gate process, lean playbook.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Value Proposition Canvas.\n` +
+                    `2. Stage-gate phases (Discovery to Launch).\n` +
+                    `3. Activities, deliverables, decision criteria.\n` +
+                    `4. Prototype and user testing plan.\n` +
+                    `5. Go-to-market strategy.\n` +
+                    `6. Regulatory/IP considerations.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Value Prop Canvas, Stage-Gate Table, Prototype Description, Launch Checklist, Go-to-Market Plan.`,
+
+                mergers: (ind, tone, ref) =>
+                    `**Role:** M&A advisor for ${ind}.\n\n` +
+                    `**Context:** Merger/acquisition evaluation.\n\n` +
+                    `**Goal:** Due diligence, valuation, negotiation, 100-day integration.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Due diligence checklist (financial, legal, operational).\n` +
+                    `2. 3 valuation methods.\n` +
+                    `3. Negotiation strategy with BATNA.\n` +
+                    `4. 100-day integration plan.\n` +
+                    `5. Common pitfalls.\n` +
+                    `6. Stakeholder communication timeline.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Due Diligence Checklist, Valuation Table, Negotiation Strategy, Integration Plan, Pitfall Matrix, Comms Timeline.`,
+
+                event: (ind, tone, ref) =>
+                    `**Role:** Senior event producer for ${ind}.\n\n` +
+                    `**Context:** Flagship event planning.\n\n` +
+                    `**Goal:** Run-of-show, marketing, logistics, ROI.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Creative theme and format.\n` +
+                    `2. Minute-by-minute run-of-show.\n` +
+                    `3. Multi-channel marketing timeline.\n` +
+                    `4. Logistics checklist (AV, F&B, signage).\n` +
+                    `5. Speaker and VIP management.\n` +
+                    `6. Post-event survey and ROI calculation.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Event Theme, Run-of-Show Table, Marketing Timeline, Logistics Checklist, VIP Plan, ROI Template.`,
+
+                esg: (ind, tone, ref) =>
+                    `**Role:** Chief Sustainability Officer for ${ind}.\n\n` +
+                    `**Context:** ESG strategy and reporting.\n\n` +
+                    `**Goal:** Materiality, decarbonization, social programs, GRI report.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Materiality assessment.\n` +
+                    `2. SMART ESG goals (3 years).\n` +
+                    `3. Decarbonization roadmap.\n` +
+                    `4. Social initiatives.\n` +
+                    `5. Governance structure.\n` +
+                    `6. GRI report outline.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Materiality Matrix, ESG Scorecard, Decarbonization Roadmap, Social Programs, Governance Charter, Report Outline.`,
+
+                feedback: (ind, tone, ref) =>
+                    `**Role:** Customer insights lead for ${ind}.\n\n` +
+                    `**Context:** Building a Voice of Customer program.\n\n` +
+                    `**Goal:** Surveys, touchpoint map, closed-loop action.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Transactional CSAT and relationship NPS surveys.\n` +
+                    `2. Touchpoint map.\n` +
+                    `3. Feedback analysis process.\n` +
+                    `4. "Closing the loop" workflow.\n` +
+                    `5. Reporting dashboard and cadence.\n` +
+                    `6. Industry benchmarks.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Survey Templates, Touchpoint Map, Analysis Framework, Closing Loop Flowchart, Dashboard Wireframe, Benchmarks.`,
+
+                digital: (ind, tone, ref) =>
+                    `**Role:** CDO for ${ind}.\n\n` +
+                    `**Context:** Digital transformation strategy.\n\n` +
+                    `**Goal:** Maturity assessment, tech roadmap, change management.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Digital maturity radar.\n` +
+                    `2. 5 high-impact initiatives.\n` +
+                    `3. 12-month implementation roadmap.\n` +
+                    `4. Change management plan.\n` +
+                    `5. Business case for top initiative.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Maturity Radar, Initiative Matrix, Roadmap, Change Plan, Business Case.`,
+
+                dataanalytics: (ind, tone, ref) =>
+                    `**Role:** BI consultant for ${ind}.\n\n` +
+                    `**Context:** Becoming data-driven.\n\n` +
+                    `**Goal:** Data strategy, KPI tree, dashboard, predictive model.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Key data sources.\n` +
+                    `2. KPI tree.\n` +
+                    `3. CEO dashboard wireframe.\n` +
+                    `4. Modern data stack implementation.\n` +
+                    `5. Pilot predictive model (CRISP-DM).\n` +
+                    `6. Data governance framework.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Data Map, KPI Tree, Dashboard Wireframe, Roadmap, CRISP-DM Plan, Governance.`,
+
+                cybersecurity: (ind, tone, ref) =>
+                    `**Role:** CISO for ${ind}.\n\n` +
+                    `**Context:** Strengthening security posture.\n\n` +
+                    `**Goal:** NIST CSF risk assessment, policies, IR plan.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Threat mapping.\n` +
+                    `2. Risk heat map (top 10).\n` +
+                    `3. Security policies (AUP, Password, Access).\n` +
+                    `4. 12-month awareness training.\n` +
+                    `5. Incident response playbook.\n` +
+                    `6. Continuous monitoring.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Threat Table, Heat Map, Policies, Training Calendar, IR Playbook, Monitoring Plan.`,
+
+                talent: (ind, tone, ref) =>
+                    `**Role:** Talent acquisition director for ${ind}.\n\n` +
+                    `**Context:** Attracting and hiring top talent.\n\n` +
+                    `**Goal:** EVP, sourcing, structured interviews, candidate experience.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Employer value proposition.\n` +
+                    `2. Multi-channel sourcing strategy.\n` +
+                    `3. Interview scorecards for 3 roles.\n` +
+                    `4. Candidate journey map.\n` +
+                    `5. Onboarding checklist (90 days).\n` +
+                    `6. Recruitment KPIs.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** EVP Statement, Sourcing Plan, Scorecards, Journey Map, Onboarding Checklist, KPI Dashboard.`,
+
+                partnerships: (ind, tone, ref) =>
+                    `**Role:** Partnerships director for ${ind}.\n\n` +
+                    `**Context:** Identifying and managing strategic partnerships.\n\n` +
+                    `**Goal:** Partner scoring, outreach templates, negotiation, health scorecard.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Ideal partner profile.\n` +
+                    `2. Target list and scoring matrix.\n` +
+                    `3. Outreach templates (email, LinkedIn).\n` +
+                    `4. Negotiation term sheet and checklist.\n` +
+                    `5. Partnership management cadence.\n` +
+                    `6. Success metrics and health scorecard.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Partner Scoring Matrix, Outreach Templates, Negotiation Checklist, Health Scorecard, Review Cadence.`,
+
+                branding: (ind, tone, ref) =>
+                    `**Role:** Brand strategist for ${ind}.\n\n` +
+                    `**Context:** Building/refreshing a brand.\n\n` +
+                    `**Goal:** Brand strategy, visual identity, voice, launch plan.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Purpose, mission, vision, values.\n` +
+                    `2. Brand archetype.\n` +
+                    `3. Positioning statement and UVP.\n` +
+                    `4. Visual identity guidelines (colour, typography, logo).\n` +
+                    `5. Brand voice and messaging pillars.\n` +
+                    `6. 90-day launch plan.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Brand Canvas, Visual Identity Guide, Messaging Playbook, 90-Day Launch Plan.`,
+
+                pricing: (ind, tone, ref) =>
+                    `**Role:** Monetization strategist for ${ind}.\n\n` +
+                    `**Context:** Optimizing pricing model.\n\n` +
+                    `**Goal:** Value metrics, pricing models, benchmarking, psychological tactics.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Value drivers and willingness-to-pay.\n` +
+                    `2. Compare 4 pricing models.\n` +
+                    `3. Competitor price benchmarking.\n` +
+                    `4. 3 psychological pricing techniques.\n` +
+                    `5. 30-day price testing experiment.\n` +
+                    `6. Price change communication plan.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Value Metric Analysis, Model Comparison Table, Competitor Price Map, Psychological Examples, Testing Plan, Communication Template.`,
+
+                retention: (ind, tone, ref) =>
+                    `**Role:** Customer success strategist for ${ind}.\n\n` +
+                    `**Context:** Reducing churn and increasing LTV.\n\n` +
+                    `**Goal:** Health scoring, engagement calendar, churn prediction, win-back.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Customer journey map.\n` +
+                    `2. Health score model (5 indicators).\n` +
+                    `3. Proactive engagement calendar.\n` +
+                    `4. Churn early-warning and save playbook.\n` +
+                    `5. 2 win-back email sequences.\n` +
+                    `6. Retention KPIs and dashboard.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Journey Map, Health Scorecard, Engagement Calendar, Save Playbook, Win-Back Emails, KPI Dashboard.`,
+
+                exitplanning: (ind, tone, ref) =>
+                    `**Role:** Exit planning advisor for ${ind}.\n\n` +
+                    `**Context:** Maximizing business value for a future exit.\n\n` +
+                    `**Goal:** Readiness assessment, value enhancement, exit options, 24-month timeline.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Exit readiness self-assessment (10 dimensions).\n` +
+                    `2. Value drivers and improvement areas.\n` +
+                    `3. Compare exit options (trade sale, MBO, PE, IPO).\n` +
+                    `4. Legal and operational preparations.\n` +
+                    `5. 24-month preparation timeline.\n` +
+                    `6. Advisory team assembly tips.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Readiness Scorecard, Value Driver Analysis, Exit Option Table, Preparation Checklist, 24-Month Timeline, Advisory Roster.`,
+
+                bmc: (ind, tone, ref) =>
+                    `**Role:** Business model strategist for ${ind}.\n\n` +
+                    `**Context:** Designing a comprehensive Business Model Canvas.\n\n` +
+                    `**Goal:** Fill all 9 BMC blocks with actionable elements.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Customer Segments and JTBD.\n` +
+                    `2. Value Propositions for each segment.\n` +
+                    `3. Channels, Customer Relationships, Revenue Streams.\n` +
+                    `4. Key Resources, Key Activities, Key Partnerships.\n` +
+                    `5. Cost Structure.\n` +
+                    `6. Testing plan for riskiest assumptions.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** A filled BMC table with all 9 blocks.`,
+
+                fundraising: (ind, tone, ref) =>
+                    `**Role:** Fundraising strategist and pitch coach for ${ind}.\n\n` +
+                    `**Context:** Preparing to raise capital.\n\n` +
+                    `**Goal:** Pitch deck outline, financial ask narrative, investor Q&A.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Problem/solution summary.\n` +
+                    `2. 10-slide pitch deck outline.\n` +
+                    `3. 2-minute elevator pitch script.\n` +
+                    `4. The ask: amount, use of funds, milestones.\n` +
+                    `5. 5 tough investor questions and answers.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Pitch Deck Outline Table, Elevator Pitch Text, Use-of-Funds Breakdown.`,
+
+                international: (ind, tone, ref) =>
+                    `**Role:** International expansion strategist for ${ind}.\n\n` +
+                    `**Context:** Entering a new country market.\n\n` +
+                    `**Goal:** Market entry strategy, localization, regulatory checklist, go-to-market.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Suggest 3 target countries.\n` +
+                    `2. Entry mode analysis (JV, acquisition, greenfield).\n` +
+                    `3. Localization requirements.\n` +
+                    `4. Regulatory and compliance checklist.\n` +
+                    `5. Phased 12-month go-to-market roadmap.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Country Comparison Table, Entry Mode Pros/Cons, Localization Checklist, Roadmap Gantt.`,
+
+                investorrelations: (ind, tone, ref) =>
+                    `**Role:** Investor relations director for ${ind}.\n\n` +
+                    `**Context:** Preparing quarterly earnings communication.\n\n` +
+                    `**Goal:** Earnings script, press release, Q&A, stakeholder email.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Quarterly results summary.\n` +
+                    `2. 5 key messages for analysts.\n` +
+                    `3. Earnings call script.\n` +
+                    `4. Press release draft.\n` +
+                    `5. Anticipated Q&A (5 tough questions).\n` +
+                    `6. Shareholder letter outline.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Sections: Summary, Key Messages, Script, Press Release, Q&A, Letter.`,
+
+                onboarding: (ind, tone, ref) =>
+                    `**Role:** Employee onboarding specialist for ${ind}.\n\n` +
+                    `**Context:** Designing a world-class onboarding experience.\n\n` +
+                    `**Goal:** 90-day plan, buddy system, culture integration, feedback loops.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Pre-boarding checklist.\n` +
+                    `2. Week 1 daily schedule.\n` +
+                    `3. 30-60-90 day milestones.\n` +
+                    `4. Buddy/mentor program structure.\n` +
+                    `5. Culture and values immersion activities.\n` +
+                    `6. Check-in survey template (30/60/90 days).\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Pre-boarding checklist, Weekly plan, Milestone tracker, Buddy guide, Survey template.`,
+
+                changemanagement: (ind, tone, ref) =>
+                    `**Role:** Change management consultant for ${ind}.\n\n` +
+                    `**Context:** Leading a major organizational change.\n\n` +
+                    `**Goal:** ADKAR plan, stakeholder map, communication plan, resistance mitigation.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Change vision statement.\n` +
+                    `2. ADKAR assessment (Awareness, Desire, Knowledge, Ability, Reinforcement).\n` +
+                    `3. Stakeholder analysis and engagement plan.\n` +
+                    `4. Communication timeline.\n` +
+                    `5. Training and support plan.\n` +
+                    `6. Resistance management playbook.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Vision statement, ADKAR scorecard, Stakeholder map, Comms timeline, Training plan, Resistance playbook.`,
+
+                kpiokr: (ind, tone, ref) =>
+                    `**Role:** Strategy and performance measurement consultant for ${ind}.\n\n` +
+                    `**Context:** Setting up a KPI and OKR framework.\n\n` +
+                    `**Goal:** Strategic objective map, KPI tree, OKR examples, review cadence.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Identify 5 strategic objectives.\n` +
+                    `2. Build a KPI tree linking objectives to operational metrics.\n` +
+                    `3. Draft 3 company-level OKRs with key results.\n` +
+                    `4. Team-level OKR examples.\n` +
+                    `5. Data sources and dashboard recommendations.\n` +
+                    `6. Quarterly review meeting agenda.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Objective map, KPI tree, OKR tables, Dashboard wireframe, Review agenda.`,
+
+                riskmanagement: (ind, tone, ref) =>
+                    `**Role:** Risk management advisor for ${ind}.\n\n` +
+                    `**Context:** Building a comprehensive risk management framework.\n\n` +
+                    `**Goal:** Risk register, heat map, mitigation strategies, monitoring plan.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Identify top 15 risks across strategic, operational, financial, compliance.\n` +
+                    `2. Likelihood and impact scoring.\n` +
+                    `3. Risk heat map.\n` +
+                    `4. Mitigation strategies for each risk.\n` +
+                    `5. Risk owner assignment.\n` +
+                    `6. Ongoing monitoring and reporting cadence.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Risk register table, Heat map description, Mitigation plan, Monitoring calendar.`,
+
+                negotiation: (ind, tone, ref) =>
+                    `**Role:** Negotiation strategist for ${ind}.\n\n` +
+                    `**Context:** Preparing for a high-stakes negotiation.\n\n` +
+                    `**Goal:** BATNA analysis, concession plan, opening offer, counter-tactics.\n\n` +
+                    `**Instructions:**\n` +
+                    `1. Define interests vs. positions.\n` +
+                    `2. Determine BATNA (Best Alternative).\n` +
+                    `3. Prepare opening offer and anchor.\n` +
+                    `4. Concession strategy (what, when, for what).\n` +
+                    `5. Anticipate 5 counter-tactics and responses.\n` +
+                    `6. Post-negotiation evaluation framework.\n` +
+                    (ref ? `\n**Refinement:** ${ref}\n` : '') +
+                    `\n**Tone:** ${tone}.\n` +
+                    `**Output Format:** Interest table, BATNA summary, Opening statement, Concession plan, Counter-tactic responses, Evaluation form.`
+            };
+
+            function getBuilder(mode) {
+                if (promptBuilders[mode]) return promptBuilders[mode];
+                const cm = customModes.find(c => c.mode === mode);
+                if (cm) return (ind, tone, ref) => cm.prompt.replace('{{industry}}', ind).replace('{{tone}}', tone) + (ref ? `\n**Refinement:** ${ref}` : '');
+                return null;
+            }
+            function buildPrompt(mode, ind, tone, ref) {
+                if (mode === 'problem') { const b = getBuilder(mode); return b ? b(ind, selectedProblems, tone, ref) : 'Error'; }
+                const b = getBuilder(mode); return b ? b(ind, tone, ref) : 'Error';
+            }
+            function generate() {
+                const ind = industryInput.value.trim();
+                if (!ind) { industryInput.focus(); showToast('Enter an industry'); return; }
+                const modes = batchCheckbox.checked ? batchModes : (currentMode ? [currentMode] : []);
+                if (modes.length === 0) { showToast('Select a mode'); return; }
+                if (modes.includes('problem') && selectedProblems.length === 0) { problemsValidation.style.display = 'block'; return; }
+                btnGenerate.disabled = true; loader.style.display = 'inline-block'; generateText.textContent = 'Generating...';
+                setTimeout(() => {
+                    const results = modes.map(m => buildPrompt(m, ind, toneSelect.value, refinementText));
+                    lastGeneratedPrompt = results.join('\n\n---\n\n');
+                    outputTextarea.value = lastGeneratedPrompt;
+                    pushUndoState(lastGeneratedPrompt);
+                    updateCounter();
+                    outputGroup.classList.add('visible');
+                    compareRight.value = lastGeneratedPrompt;
+                    if (isEditing) toggleEdit(false);
+                    saveToHistory(lastGeneratedPrompt);
+                    btnGenerate.disabled = false; loader.style.display = 'none'; generateText.textContent = '🚀 Generate Prompt';
+                    resetRating();
+                    btnAirefine.style.display = apiKey ? 'inline-flex' : 'none';
+                    validatorResult.style.display = 'none';
+                }, 300);
+            }
+            btnGenerate.addEventListener('click', generate);
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); generate(); }
+                if (e.key === '?' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); showToast('Shortcuts: Ctrl+Enter=Generate, Ctrl+S=Save Template, Ctrl+Shift+C=Copy, Esc=Close modal'); }
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); btnSaveTemplate.click(); }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') { e.preventDefault(); btnCopy.click(); }
+                if (e.key === 'Escape') { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); tourOverlay.style.display = 'none'; }
+            });
+
+            function updateCounter() { const t = outputTextarea.value; counter.textContent = `Characters: ${t.length} | Words: ${t.trim() ? t.trim().split(/\s+/).length : 0}`; }
+            outputTextarea.addEventListener('input', updateCounter);
+
+            btnValidate.addEventListener('click', () => {
+                const prompt = outputTextarea.value;
+                if (!prompt) { showToast('Nothing to validate'); return; }
+                const checks = [
+                    { label: 'Role', present: /\*\*Role:\*\*/i.test(prompt) },
+                    { label: 'Context', present: /\*\*Context:\*\*/i.test(prompt) },
+                    { label: 'Goal', present: /\*\*Goal:\*\*/i.test(prompt) },
+                    { label: 'Instructions', present: /\*\*Instructions:\*\*/i.test(prompt) || /\d+\./.test(prompt) },
+                    { label: 'Output Format', present: /\*\*Output Format:\*\*/i.test(prompt) },
+                    { label: 'Tone', present: /\*\*Tone:\*\*/i.test(prompt) }
+                ];
+                const score = checks.filter(c => c.present).length;
+                const percentage = Math.round((score / checks.length) * 100);
+                let feedback = '';
+                if (percentage === 100) feedback = 'Excellent! All essential elements present.';
+                else if (percentage >= 80) feedback = 'Good prompt. Consider adding the missing element(s) for even better results.';
+                else feedback = 'Needs improvement. Add the missing elements below for a stronger prompt.';
+                validatorResult.style.display = 'block';
+                validatorResult.innerHTML = `<div class="validator-score">${percentage}%</div><p>${feedback}</p><ul>${checks.map(c => `<li style="color:${c.present?'#10b981':'#ef4444'}">${c.present?'✅':'❌'} ${c.label}</li>`).join('')}</ul>`;
+            });
+
+            // Guided Tour
+            btnStartTour.addEventListener('click', () => { tourStep = 0; showTourStep(); tourOverlay.style.display = 'flex'; });
+            btnTourNext.addEventListener('click', () => { tourStep++; if (tourStep >= tourSteps.length) { tourOverlay.style.display = 'none'; return; } showTourStep(); });
+            btnTourSkip.addEventListener('click', () => { tourOverlay.style.display = 'none'; });
+            function showTourStep() {
+                const step = tourSteps[tourStep];
+                tourTitle.textContent = step.title;
+                tourText.textContent = step.text;
+                btnTourNext.textContent = tourStep >= tourSteps.length - 1 ? 'Finish' : 'Next';
+                if (step.element) {
+                    const rect = step.element.getBoundingClientRect();
+                    const tooltip = document.getElementById('tourTooltip');
+                    tooltip.style.top = Math.max(rect.top - 200, 20) + 'px';
+                    tooltip.style.left = Math.min(rect.left, window.innerWidth - 400) + 'px';
+                }
+            }
+
+            // Gallery
+            btnOpenGallery.addEventListener('click', () => {
+                galleryModeSelect.innerHTML = getAllGenerators().map(g => `<option value="${g.mode}">${g.icon} ${g.label}</option>`).join('');
+                galleryModeSelect.value = currentMode || 'workflow';
+                updateGalleryExample();
+                galleryModal.style.display = 'flex';
+            });
+            galleryModeSelect.addEventListener('change', updateGalleryExample);
+            btnCloseGallery.addEventListener('click', () => galleryModal.style.display = 'none');
+            function updateGalleryExample() {
+                const mode = galleryModeSelect.value;
+                const builder = getBuilder(mode);
+                if (builder) galleryExampleText.value = builder('E-commerce', 'Professional', '');
+                else galleryExampleText.value = 'Example not available.';
+            }
+
+            // Back to top
+            window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none'; });
+            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // Action buttons
+            btnCopy.addEventListener('click', () => navigator.clipboard.writeText(outputTextarea.value).then(() => showToast('Copied!')));
+            btnCopyRole.addEventListener('click', () => { const m = outputTextarea.value.match(/\*\*Role:\*\*(.+)/); m ? navigator.clipboard.writeText(m[1].trim()).then(() => showToast('Role copied!')) : showToast('No role found'); });
+            btnCopyFormat.addEventListener('click', () => { const m = outputTextarea.value.match(/\*\*Output Format:\*\*(.+)/); m ? navigator.clipboard.writeText(m[1].trim()).then(() => showToast('Format copied!')) : showToast('No format found'); });
+            btnDownload.addEventListener('click', () => { const b = new Blob([outputTextarea.value], {type:'text/plain'}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'promptforge.txt'; a.click(); });
+            btnPdf.addEventListener('click', () => { const w = window.open('','','width=800,height=600'); w.document.write(`<html><head><title>PDF</title></head><body><pre>${outputTextarea.value.replace(/</g,'&lt;')}</pre></body></html>`); w.document.close(); w.print(); });
+            btnPrint.addEventListener('click', () => { const w = window.open('','','width=800,height=600'); w.document.write(`<pre>${outputTextarea.value.replace(/</g,'&lt;')}</pre>`); w.document.close(); w.print(); });
+            btnShare.addEventListener('click', () => { const u = `${location.origin}${location.pathname}?prompt=${encodeURIComponent(outputTextarea.value)}`; navigator.clipboard.writeText(u).then(() => showToast('Link copied!')); });
+            btnRefine.addEventListener('click', () => refineGroup.classList.add('visible'));
+            btnApplyRefine.addEventListener('click', () => { refinementText = refineInput.value.trim(); if (!refinementText) return; generate(); hideRefine(); });
+            btnVariations.addEventListener('click', () => { if (!lastGeneratedPrompt) return; const base = lastGeneratedPrompt.replace(/Tone:.*/,'').trim(); outputTextarea.value = [base+'\n\n**Executive Summary:** Shorter.', base+'\n\n**Technical Deep-Dive:** Metrics.', base+'\n\n**Storytelling:** Case study.'].join('\n\n---\n\n'); updateCounter(); saveToHistory(outputTextarea.value); });
+            btnClearOutput.addEventListener('click', () => { outputTextarea.value = ''; updateCounter(); outputGroup.classList.remove('visible'); });
+            btnReset.addEventListener('click', () => { industryInput.value = ''; setMode(null); batchModes=[]; document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('selected-batch','active')); selectedProblems=[]; updateProblemUI(); hideOutput(); hideRefine(); });
+            function hideOutput() { outputGroup.classList.remove('visible'); }
+            function hideRefine() { refineGroup.classList.remove('visible'); }
+            function toggleEdit(editable) { isEditing=editable; outputTextarea.readOnly=!editable; btnEdit.innerHTML=editable?'🔒 Lock':'✏️ Edit'; }
+            btnEdit.addEventListener('click', ()=>{ toggleEdit(!isEditing); if(isEditing) pushUndoState(outputTextarea.value); });
+            btnUndo.addEventListener('click', ()=>{ if(!undoStack.length) return; redoStack.push(outputTextarea.value); outputTextarea.value=undoStack.pop(); updateCounter(); });
+            btnRedo.addEventListener('click', ()=>{ if(!redoStack.length) return; undoStack.push(outputTextarea.value); outputTextarea.value=redoStack.pop(); updateCounter(); });
+            btnSnapshotCompare.addEventListener('click', ()=>{ compareSnapshot=outputTextarea.value; compareLeft.value=compareSnapshot; compareRight.value=outputTextarea.value; comparePanel.style.display='block'; });
+            btnClearCompare.addEventListener('click', ()=>{ compareLeft.value=''; compareRight.value=''; comparePanel.style.display='none'; });
+            function resetRating() { btnThumbsUp.style.opacity='0.5'; btnThumbsDown.style.opacity='0.5'; }
+            btnThumbsUp.addEventListener('click', ()=>{ btnThumbsUp.style.opacity='1'; btnThumbsDown.style.opacity='0.5'; });
+            btnThumbsDown.addEventListener('click', ()=>{ btnThumbsDown.style.opacity='1'; btnThumbsUp.style.opacity='0.5'; });
+
+            // Templates
+            function getTemplates() { return JSON.parse(localStorage.getItem('pf-templates')||'[]'); }
+            function saveTemplates(arr) { localStorage.setItem('pf-templates', JSON.stringify(arr)); }
+            btnSaveTemplate.addEventListener('click', ()=>{ if(!outputTextarea.value) return; const n=prompt('Template name:'); if(!n) return; const t=getTemplates(); t.push({name:n, prompt:outputTextarea.value}); saveTemplates(t); showToast('Saved!'); });
+            function renderTemplates() {
+                const t=getTemplates();
+                templateList.innerHTML=t.map((x,i)=>`<li><span>${escapeHtml(x.name)}</span><div><button data-load="${i}">📂</button><button data-rename="${i}">✏️</button><button data-delete="${i}">🗑️</button></div></li>`).join('');
+                templateList.querySelectorAll('[data-load]').forEach(b=>b.addEventListener('click',()=>{const x=getTemplates()[b.dataset.load]; outputTextarea.value=x.prompt; updateCounter(); outputGroup.classList.add('visible'); templatesModal.style.display='none';}));
+                templateList.querySelectorAll('[data-rename]').forEach(b=>b.addEventListener('click',()=>{const t=getTemplates(); const n=prompt('New name:',t[b.dataset.rename].name); if(n){t[b.dataset.rename].name=n; saveTemplates(t); renderTemplates();}}));
+                templateList.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',()=>{let t=getTemplates(); t.splice(b.dataset.delete,1); saveTemplates(t); renderTemplates();}));
+            }
+            btnTemplates.addEventListener('click', ()=>{ renderTemplates(); templatesModal.style.display='flex'; });
+            btnCloseModal.addEventListener('click', ()=>templatesModal.style.display='none');
+
+            // History
+            function saveToHistory(prompt) { let h=JSON.parse(localStorage.getItem('pf-history')||'[]'); h.unshift({prompt,date:new Date().toISOString()}); if(h.length>10) h=h.slice(0,10); localStorage.setItem('pf-history',JSON.stringify(h)); renderHistory(); }
+            function renderHistory() { const h=JSON.parse(localStorage.getItem('pf-history')||'[]'); historyList.innerHTML=h.map((x,i)=>`<li data-index="${i}"><span>${x.prompt.substring(0,50)}...</span><span>${new Date(x.date).toLocaleDateString()}</span></li>`).join(''); historyList.querySelectorAll('li').forEach(li=>li.addEventListener('click',()=>{const h=JSON.parse(localStorage.getItem('pf-history')||'[]'); if(h[li.dataset.index]){outputTextarea.value=h[li.dataset.index].prompt; updateCounter(); outputGroup.classList.add('visible');}})); }
+            btnClearHistory.addEventListener('click', ()=>{ localStorage.removeItem('pf-history'); renderHistory(); });
+            btnExportHistory.addEventListener('click', ()=>{ const h=JSON.parse(localStorage.getItem('pf-history')||'[]'); const b=new Blob([JSON.stringify(h,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='pf-history.json'; a.click(); });
+
+            // Dark mode
+            darkToggle.addEventListener('click',()=>{ document.body.classList.toggle('dark'); darkToggle.textContent=document.body.classList.contains('dark')?'☀️ Light':'🌙 Dark'; localStorage.setItem('pf-dark',document.body.classList.contains('dark')); });
+            if(localStorage.getItem('pf-dark')==='true'){ document.body.classList.add('dark'); darkToggle.textContent='☀️ Light'; }
+
+            // Settings / AI Refine
+            btnOpenSettings.addEventListener('click',()=>{ apiKeyInput.value=apiKey; settingsModal.style.display='flex'; });
+            btnCloseSettings.addEventListener('click',()=>settingsModal.style.display='none');
+            btnSaveApiKey.addEventListener('click',()=>{ apiKey=apiKeyInput.value.trim(); localStorage.setItem('pf-openai-key',apiKey); settingsModal.style.display='none'; btnAirefine.style.display=apiKey?'inline-flex':'none'; });
+            btnClearApiKey.addEventListener('click',()=>{ apiKey=''; localStorage.removeItem('pf-openai-key'); settingsModal.style.display='none'; btnAirefine.style.display='none'; });
+            btnAirefine.addEventListener('click',async ()=>{
+                if(!apiKey){showToast('Enter API key');return;}
+                const p=outputTextarea.value; if(!p) return;
+                btnAirefine.disabled=true; btnAirefine.textContent='⏳';
+                try{
+                    const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${apiKey}`},body:JSON.stringify({model:'gpt-4o-mini',messages:[{role:'system',content:'Improve this prompt. Return ONLY the improved text.'},{role:'user',content:p}],temperature:0.7,max_tokens:1500})});
+                    const d=await r.json();
+                    if(d.choices&&d.choices[0]){outputTextarea.value=d.choices[0].message.content.trim(); updateCounter(); showToast('Refined!');}
+                    else showToast('API error: '+(d.error?.message||'Unknown'));
+                }catch(e){showToast('Network error');}
+                btnAirefine.disabled=false; btnAirefine.textContent='🤖 AI Refine';
+            });
+
+            // Custom modes
+            btnAddCustomMode.addEventListener('click',()=>{customModeName.value='';customModeIcon.value='';customModePrompt.value='';customModeModal.style.display='flex';});
+            btnCancelCustomMode.addEventListener('click',()=>customModeModal.style.display='none');
+            btnSaveCustomMode.addEventListener('click',()=>{const n=customModeName.value.trim();const i=customModeIcon.value.trim()||'🧩';const p=customModePrompt.value.trim();if(!n||!p){showToast('Name and prompt required');return;}customModes.push({mode:'custom_'+Date.now(),name:n,icon:i,prompt:p});localStorage.setItem('pf-custom-modes',JSON.stringify(customModes));customModeModal.style.display='none';renderModeButtons(modeSearch.value);});
+
+            // Mobile nav
+            bottomNav.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.bottom-nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');switch(b.dataset.section){case'modes':document.querySelector('.mode-buttons').scrollIntoView({behavior:'smooth'});break;case'generate':btnGenerate.scrollIntoView({behavior:'smooth'});break;case'output':if(outputGroup.classList.contains('visible'))outputGroup.scrollIntoView({behavior:'smooth'});break;case'history':historyPanel.scrollIntoView({behavior:'smooth'});break;case'settings':btnOpenSettings.click();break;}}));
+
+            // URL load
+            const urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.get('prompt')){ outputTextarea.value=decodeURIComponent(urlParams.get('prompt')); updateCounter(); outputGroup.classList.add('visible'); }
+
+            function showToast(msg){ toast.textContent=msg; toast.style.transform='translateX(-50%) translateY(0)'; setTimeout(()=>toast.style.transform='translateX(-50%) translateY(100px)',2000); }
+            function escapeHtml(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+            function pushUndoState(t){ undoStack.push(t); if(undoStack.length>30) undoStack.shift(); redoStack=[]; }
+
+            renderHistory();
+            setMode(null);
+            btnAirefine.style.display=apiKey?'inline-flex':'none';
+            if(!localStorage.getItem('pf-tour-shown')){ setTimeout(()=>{ tourStep=0; showTourStep(); tourOverlay.style.display='flex'; localStorage.setItem('pf-tour-shown','1'); },800); }
+        })();
+    </script>
+</body>
+</html>

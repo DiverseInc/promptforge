@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptForge Pro — 37-in-1 AI Prompt Creator | Diverse Industries Inc.</title>
+    <meta name="description" content="Generate expert-level AI prompts for 37 business scenarios. Save hours of prompt engineering with one click.">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #0f172a;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+        }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(99,102,241,0.2);
+            color: #818cf8;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(99,102,241,0.3);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 640px;
+            margin: 0 auto 32px;
+        }
+        .hero .cta-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.4); }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: transparent;
+            color: #f1f5f9;
+            border: 2px solid #334155;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .btn-secondary:hover { border-color: #6366f1; }
+        .hero .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+        .hero .stat { text-align: center; }
+        .hero .stat .num { font-size: 1.8rem; font-weight: 800; color: #818cf8; }
+        .hero .stat .label { font-size: 0.85rem; color: #64748b; }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+            border-top: 1px solid #1e293b;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 48px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #1e293b;
+            border-radius: 14px;
+            padding: 28px;
+            border: 1px solid #334155;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .feature-card:hover { border-color: #6366f1; transform: translateY(-4px); }
+        .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
+        .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.9rem; color: #94a3b8; }
+
+        /* Modes grid */
+        .modes-section {
+            padding: 80px 0;
+            background: #0a0f1e;
+        }
+        .modes-section h2 { text-align: center; font-size: 2rem; margin-bottom: 48px; }
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 8px;
+        }
+        .mode-chip {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 30px;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+        }
+        .pricing h2 { font-size: 2rem; margin-bottom: 12px; }
+        .pricing .sub { color: #94a3b8; margin-bottom: 40px; }
+        .pricing-card {
+            display: inline-block;
+            max-width: 400px;
+            width: 100%;
+            background: #1e293b;
+            border: 2px solid #6366f1;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+        }
+        .pricing-card .popular {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6366f1;
+            color: #fff;
+            padding: 4px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .pricing-card .price { font-size: 3rem; font-weight: 800; margin: 12px 0 8px; }
+        .pricing-card .price small { font-size: 1rem; color: #64748b; font-weight: 400; }
+        .pricing-card .desc { color: #94a3b8; margin-bottom: 24px; }
+        .pricing-card ul { list-style: none; text-align: left; margin-bottom: 28px; }
+        .pricing-card ul li { padding: 8px 0; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .pricing-card ul li:before { content: '✓'; color: #10b981; font-weight: 700; }
+
+        /* FAQ */
+        .faq {
+            padding: 60px 0;
+            border-top: 1px solid #1e293b;
+        }
+        .faq h2 { text-align: center; font-size: 1.6rem; margin-bottom: 32px; }
+        .faq-item {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+        .faq-item h3 { font-size: 1rem; margin-bottom: 6px; cursor: pointer; }
+        .faq-item p { font-size: 0.9rem; color: #94a3b8; }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .hero .stats { gap: 20px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">⚡ v12.0 — 37 Prompt Generators</div>
+            <h1>PromptForge Pro</h1>
+            <p class="subtitle">Generate expert-level AI prompts for any business scenario. Stop writing prompts from scratch — choose a mode, pick your industry, and get a production-ready prompt in seconds.</p>
+            <div class="cta-buttons">
+                <a class="btn-primary" href="https://gumroad.com/l/promptforge" target="_blank" rel="noopener">🚀 Buy Now — $19</a>
+                <a class="btn-secondary" href="index.html" rel="noopener">🎯 Try Live Demo</a>
+            </div>
+            <div class="stats">
+                <div class="stat"><div class="num">37</div><div class="label">Generator Modes</div></div>
+                <div class="stat"><div class="num">50+</div><div class="label">Industries Supported</div></div>
+                <div class="stat"><div class="num">100%</div><div class="label">Client-Side (No Server)</div></div>
+                <div class="stat"><div class="num">📦</div><div class="label">Single HTML File</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Everything You Need to Engineer Better Prompts</h2>
+            <div class="grid">
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h3>Industry-Specific</h3>
+                    <p>Select from 50+ industries — each prompt is tailored to your sector with relevant terminology and context.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🧩</div>
+                    <h3>37 Generator Modes</h3>
+                    <p>From marketing to legal, crisis comms to fundraising — every business scenario covered with expert-level prompt templates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔍</div>
+                    <h3>Built-in Validator</h3>
+                    <p>Score your prompts against 6 quality criteria (Role, Context, Goal, Instructions, Format, Tone). Get feedback instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📋</div>
+                    <h3>Copy & Go</h3>
+                    <p>One-click copy to clipboard. Works with ChatGPT, Claude, Gemini, DeepSeek, or any AI assistant.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔧</div>
+                    <h3>Refine & Customize</h3>
+                    <p>Refine prompts with extra instructions, create variations, or edit freely. Undo/redo supported.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💾</div>
+                    <h3>Save Templates</h3>
+                    <p>Save your best prompts as templates. Organize your library and load them anytime.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🌙</div>
+                    <h3>Dark Mode</h3>
+                    <p>Easy on the eyes. Dark mode persists across sessions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📱</div>
+                    <h3>Works on Mobile</h3>
+                    <p>Responsive design with bottom navigation. Use on any device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔗</div>
+                    <h3>Share via Link</h3>
+                    <p>Share generated prompts with a URL. Teams can collaborate effortlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎓</div>
+                    <h3>Guided Tour</h3>
+                    <p>Built-in interactive tour — get started in 30 seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🤖</div>
+                    <h3>AI Refine (Optional)</h3>
+                    <p>Connect your own OpenAI key for AI-powered prompt refinement directly in the app.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📄</div>
+                    <h3>Export Any Format</h3>
+                    <p>Copy, download as .txt, PDF print, or share. Works offline too.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 37 Modes Preview -->
+    <section class="modes-section">
+        <div class="container">
+            <h2>37 Generator Modes</h2>
+            <div class="modes-grid">
+                <div class="mode-chip">✨ Workflow</div>
+                <div class="mode-chip">🔥 Pain Points</div>
+                <div class="mode-chip">📣 Marketing</div>
+                <div class="mode-chip">💼 Sales</div>
+                <div class="mode-chip">👥 HR & Team</div>
+                <div class="mode-chip">🎧 Support</div>
+                <div class="mode-chip">🧠 Brainstorm</div>
+                <div class="mode-chip">🚨 Crisis Comms</div>
+                <div class="mode-chip">📊 Financial</div>
+                <div class="mode-chip">🔍 Competitor</div>
+                <div class="mode-chip">⏱️ Productivity</div>
+                <div class="mode-chip">⚖️ Legal</div>
+                <div class="mode-chip">🏗️ Project Mgmt</div>
+                <div class="mode-chip">🚚 Supply Chain</div>
+                <div class="mode-chip">🔧 Product Dev</div>
+                <div class="mode-chip">💼 M&A</div>
+                <div class="mode-chip">📅 Event Planning</div>
+                <div class="mode-chip">🌱 ESG</div>
+                <div class="mode-chip">📊 Feedback</div>
+                <div class="mode-chip">🖥️ Digital Trans.</div>
+                <div class="mode-chip">📈 Data Analytics</div>
+                <div class="mode-chip">🛡️ Cybersecurity</div>
+                <div class="mode-chip">🧲 Talent</div>
+                <div class="mode-chip">🤝 Partnerships</div>
+                <div class="mode-chip">🎨 Branding</div>
+                <div class="mode-chip">💰 Pricing</div>
+                <div class="mode-chip">❤️ Retention</div>
+                <div class="mode-chip">🚪 Exit Planning</div>
+                <div class="mode-chip">📋 Business Model Canvas</div>
+                <div class="mode-chip">💸 Fundraising</div>
+                <div class="mode-chip">🌍 International Exp.</div>
+                <div class="mode-chip">📈 Investor Relations</div>
+                <div class="mode-chip">🎯 Employee Onboarding</div>
+                <div class="mode-chip">🔄 Change Management</div>
+                <div class="mode-chip">🎯 KPI & OKR Framework</div>
+                <div class="mode-chip">⚠️ Risk Management</div>
+                <div class="mode-chip">🤝 Negotiation Strategy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <p class="sub">One payment. Lifetime access. No subscriptions.</p>
+            <div class="pricing-card">
+                <div class="popular">Best Value</div>
+                <div class="price">$19 <small>one-time</small></div>
+                <p class="desc">Full PromptForge Pro license. Use on unlimited devices.</p>
+                <ul>
+                    <li>37 generator modes</li>
+                    <li>50+ industry profiles</li>
+                    <li>Built-in prompt validator</li>
+                    <li>Save templates & history</li>
+                    <li>Dark mode & mobile support</li>
+                    <li>Lifetime updates</li>
+                    <li>Single HTML file — no install</li>
+                    <li>Works 100% offline</li>
+                </ul>
+                <a class="btn-primary" href="https://gumroad.com/l/promptforge" target="_blank" rel="noopener" style="width:100%; justify-content:center;">🚀 Buy Now — $19</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>How does the license key work?</h3>
+                <p>After purchase on Gumroad, you'll receive a license key via email. Enter it in the app to unlock full access. One license works on all your devices.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I try it before buying?</h3>
+                <p>Yes! There's a 7-day free trial — no credit card required. Just click "Try Free" on the license screen.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need an API key?</h3>
+                <p>No. PromptForge generates prompts locally — no API keys needed. The optional AI Refine feature requires your own OpenAI key if you choose to use it.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What AI tools does it work with?</h3>
+                <p>Any of them — ChatGPT, Claude, Gemini, DeepSeek, Grok, Perplexity, or any LLM. Copy the prompt and paste it wherever you work.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is it a one-time purchase?</h3>
+                <p>Yes. $19 one-time, lifetime access, including all future updates. No subscriptions, no hidden fees.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I get a refund?</h3>
+                <p>Absolutely. If PromptForge doesn't meet your expectations within 30 days, we'll refund your purchase — no questions asked.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Diverse Industries Inc. — PromptForge Pro v12.0</p>
+            <p style="margin-top:4px;">Built with ❤️ for AI creators, marketers, and business builders.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
