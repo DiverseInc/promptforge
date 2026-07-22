@@ -673,123 +673,15 @@
     <div id="toast" style="position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(100px); background:#1e293b; color:#fff; padding:10px 20px; border-radius:30px; z-index:2000; transition:0.3s; pointer-events:none;"></div>
 
     <script>
-        // === OFFLINE LICENSE VERIFICATION ===
-        // License keys are verified locally via SHA-256 hash matching.
-        // To add a new key: generate SHA256('PF-XXXX-XXXX-XXXX') and add the hash below.
+                // === OFFLINE LICENSE VERIFICATION ===
         const PF_TRIAL_DAYS = 7;
         
-        // Valid license key hashes (SHA-256 of each valid key)
-        // To generate a new license key, use the script: node -e "console.log(require('crypto').createHash('sha256').update('PF-XXXX-XXXX-XXXX').digest('hex'))"
-        const PF_VALID_HASHES = [
-            '6f73fb89ae44c93ac5bef436155a13b1f608e9ccc387bbbc5ea1b212af0169a2',
-            '7574632247f5287411ccdd383f117ad82653375d5209631508ca9644ac7098d9',
-            '9b16b84918b8dd267d262e2a9e98b464ada736418adf80a1fda2648a9ea07cf0',
-            'a482f5dea27348c75c1dec85689db8bb9566a9c0642dc3682ef615eb52d75144',
-            '18b21a770034cb634abbfacb5a801b02eb0bc2b0e15e7baef23c90d22ab1807e',
-            '0b0be8ff840fbc98e2e5a9f11a8f00f87f21d5d394b57b5de5ec83854618fc62',
-            '447b21419f60d5a049ba99ad0713ae683efdca287237d5e1047022b778c60d33',
-            'eecee8dea07ab4b6acb2056c373935bf18dc64c125fb50a7f1a4a078ea294642',
-            '4fd4b155f8de3dab03509e678a11b1ef03f9f2f42b28d6035e4ddeda16ac5a76',
-            '755091d2d48762b5a0bb158faf01a609573de164aab46f678b6bd108550867aa',
-            'f854d979a1a6bd3cb606d1ad4a484d91f5284f581b9712b9f2d1cd0de0da2af7',
-            '7fae45ddf50198f7b68f68777f8bfae24e38fc931c9dfea7b25c0f8049ce94b1',
-            'a9fd177531df7ec2fd2c3eb635ba13d29f9e9f45bb764ed5ab17554ea270b1de',
-            '1b9f15dc53753c90eba5111b2339d84a7ffa6cc6e3b4fa02939f690df404314c',
-            'e06c89d8b9d01cfde90090c95c3ad93caaa74308e43ee72caafefc7132d48164',
-            '246f32ff9299549e5d6d35da32601f72cd668fccb4d1fe4c78573273dce2f944',
-            'd48239d6d63cbac7fe4d9b89d45045849d57dacaa680baf53746120e3c28e66f',
-            '7648c613f1f3b04d263caf21ef4baef79525fb47220f4e59f70ad471a4a2cb2b',
-            '05486494ebd0eeed7b785cdd355a0bc0cab4c88a8e3936d35b0fa7ae2f372cf6',
-            '1780acb7c1bcd0ecc1b4819049cfa7445c473e3cef9278ccbe5ec17a9cfcc296',
-            '11c39585a9f2dae37f666f67df9d79e70a00791c9ef6e16188e64e0bdeb5dc5b',
-            '69697b8b4a0450cc8052189dd9cf994ff7df275a7fe1ef56653526afabaf9cc6',
-            '89edb091a4f37a8621f598df5bfb451069b3696025010e553ff7e8095768a01c',
-            '6469de8da6275e4a61d094b46ee3440f7ba3acab9f9ff1adb22a9796ece85088',
-            '1b8ba9a63d9133fff03097c3dd18481d66b40bc7454a220815b574d6e9eeecdb',
-            '1a223871e8ce9c15baf892c56add58f72e645016d32aa4a5abb63a9c268bad84',
-            '66a7fe4bbe85cf21fb9c3c1cb5b5b0a2624cd44a2e8aa8cbe843d6a6e4fd7b70',
-            '5587ee1e1cc4a1375ed1296f39fbcf62100610d29c78e5d30cea533b6800e5e1',
-            '038bb33725164da6a6b1dd7b74981d5e1d98aa54b6c541cb1a19333882f3a856',
-            '961d6d7ca693da387c6ffd69ba35673bd14e88b6587411b697f316c65fa6d4d0',
-            'bc956e5d279f5ad7e9ae78cd8407d6077a353bb26d03a33ebd5033e00712e127',
-            'a4467d7cf17bee1f87657a4434fdf141222412717a8928279309a61d3c76eecd',
-            'be24971eb671e41aab39bab56032e362a7e1a81a22f2bcb8fe35d083f372dbb8',
-            '7195ea5959e0bd57871f97e659026a2f18b420264c6484a0da01fb03f00af4e3',
-            'f878a1e3f2642f4b129fa4f97f0e251b9c35d623ca5ba785d335ad7401834af8',
-            '89eae99c9a5294fda750403b0f99ed5a94a6d640c113b28329e831e7a555a230',
-            '556c5a75fdf82274e67d0f94a3b2ba78a324aa1d153905871f86363092b94df7',
-            '69407d0809ce4ca752ca59847992e35a9d1a7da35317f23c0b6267cdf401368d',
-            '908907f909ca2647161505dee6c040a09afc2d87e6b222041646d751ce260ebb',
-            'dec6ceb17d1e5ac4f88981719ca6e1e7b3cb13213bd9c7eec6685b6576e27953',
-            '2308041d80b46e3d8bbf3bab5dc80fcb2108b2735dc7bf5da580e71f0119b7d8',
-            'be94c59ba03e9dcc9765f5276e7b01483bbd43308f1dfcf94f61ff1e15d019f4',
-            '0a22fe01f98b20c8cdcf3e642dda9dcc248042baffdbe53825b5bbadd35c7c75',
-            'e3198abc219210b1c29a6a11bb501bf69369bbf2bef9bd0ba67b09ab28bb1cad',
-            '28bcb065365dd391918e09ec97f3e8b0ddb000e7b81c361e301a7d548e2200c5',
-            'f365a1c5cc12c0c07c9f98d907fb62dc50d5a84785177c24b4d8cf88661f4a7c',
-            '0d0b2d647bc03e0ec003c1e5177d94790d690b2590fcd9669feadbec780131de',
-            '33ecf3ca3922a09cbf1d19dcadff322ac61ff48e1326cfacd9c6bfabd645e551',
-            '0fe14b62b1001bfd63460921b81b44e9731f265ff48676511cc42aca2e87f2f0',
-            'ee085d5aabdafdf3f7096e65d9ad05dbce190c2414d60844ed6d9e3f7f2298bf',
-            '18abe7ceebbb2d53a495d043b54059b8abd7a8a8a2ba91816538dfbbd09005ad',
-            '426809674d07c08bed30b9434752b55ab16d0acd51d99c6386c3dfaebe010196',
-            '0475c387f37b4caf41acda06884df3028ac55db0874e44fd6cd5f4b7d30ad421',
-            '367f15a9a36a9210fb9b0b0765b750e055159dd405f9706dcaa594d9eed601d0',
-            'f070a7fc6b1ee9d99c5b20a0bfc92382fe2172c3d015d2f251cac5219191480e',
-            '1ff63db2c7a472c8a340e104743357b4017b6fde8d5bc90fce1989570c23b620',
-            'a347710156048eceafc19584af17199c2defda0f2433c1879e16c3e8683c7112',
-            '1d6a0ce41a3898d60b7ee2dbbc10c21de63dec5fbb4dec2a56680a25364ed0ea',
-            '12c96c6aeb9271f5cc0bfe228d67eaef1c10d7ea454cf16a245d2ff17c49ad08',
-            '4ddcdc2a5e7bc785ab34d6835addd8157cf74ab4ca4eab478a6863cf409411b4',
-            '2340a6bc208ab69236f2e7abd6d1043c2df482e3d6abfd725681e15636106fc9',
-            'af16b2a1181f3227b6fa72df0c0517f9aad61a467da7886ca251d19f3ae83840',
-            '7891af2e66d5cbce463ad50efd88fbc682caf1976c017caec103fb6505d0bdb0',
-            'c100d98c63bf0e521d7de7da8324dcf5cededc033c2e22639fbdde19064d7893',
-            'f872495ae4c4ff17c089011f9557c0f26c68bf361e75f8145ab471b7d96038d4',
-            '9c8a9ea9d27f3c005bec97fe6f4e2fc6d417edca358293550027368b624d662d',
-            '25a999e19e4273112050b76a21e4aa69193f83ca0237d8c762bd01b90e132edb',
-            '423c9b5a544c6edd97a3d3aa817977fc67a7f4cd289fac46260a687d85260218',
-            '0cc304f3f8d3416f912e7f5643b733209fcc0f96120a191fba6a89b6b8c6bdf3',
-            'c4a226c0e60cd53a5a0ee84e344eef781fb0c0a49736a5602ad53c2dd84b6b3a',
-            '0ac2f9cd8b8c524eedeee8d44311ce02ee938a32976d5d8d04db26197cc9d9c8',
-            'e63907c9a8ed2cc40d02e46877ccbcadee0a3d1b01bb9519b6bc6e38a663ae93',
-            'a5cfdecb223ceca40d98d1e92817f1720758fe6511491a7167605f35bf68c664',
-            '507782a1273a4114b50099c3ea637ba1e10ef60966b1c676696030ffa543ca52',
-            'e9fddc833e7388b18ec0dca19c827fdead52db1483e167c6c17d3fbb54960a3a',
-            'c53ee919f1031fef7a447b5680cec8be453aad6eb2ff1c263a1252d3ab65dae8',
-            '763b4b86d55bd0e5f8bdbbdc7f257db5f27a51fdffb2b4a430c460682cad2f61',
-            'bf8617aa7ea02a304dfe70ee5bc74f61fcb555cd5315fcbd11a63f01f0b128e3',
-            'e2318b5067c7ab43a131d9a1987441df498105e9f9db1017101a9b83bf01b9a7',
-            '4fd8ec513dd61138477f28d571c33b2404a030f6965dda6ded44df47785ca0b0',
-            '88fa9c4005ee9ca94b7b30e357629dc822c2a09cb842b572e122b0bde24335e0',
-            '2e3eacc4143dcdd8df6ad2b22a638e1f69e5dc4565bd17f27845ca9d69cccf44',
-            'e24798aad21bbbff8eba9d35f9e52366ed3a534c455d52fc3696c682b65fb54d',
-            '5c492391608728cff93dd439e5e07a3eb03ecf29c68fa23acc369cd9ea946f2f',
-            'cbc979fa5143eb62b72074449436e8919251522b2e0405bf50b64bc70fef12c3',
-            '0da7a4fbc99514d6f105282720f081fbc655915119462f88c05befa4a21733db',
-            '4b45d6da72ad4edc638521ad7455036184d907ee53a1b0773aa3d4c0b3349c43',
-            '6f437dae57f7787950958bf0f91972f09da94450e06a152ffd27b47015bd5f18',
-            '2c8bbc73008abea834f61c7667c6f4f18a089b2686e58380153f656a9b5f3da5',
-            '5a1d0d8055fe8fe4c5156c08449ce89c476837d316e45397f9590f3a7b8a1a1d',
-            '29a98f6657fc3a23e8aefe9252529352c059a2be40ff46f0752eac4ff9a310b4',
-            '98fe8b7e45c63f10ae4d3fc925cb6b1f7201c74e80de43ee4a539be173d6e7c1',
-            '3b4ecf6dd68b953be1f3083ef78ab72f5df80abb74dcabd5e727775a3253fae2',
-            '0c31054421e1a22c0755b34c71c7d6ba5ac8b7a6640f2a69f6c896cf9365ecd7',
-            '9a913fc97659395f8eeaf745444ec3a140b4bc2b91f6aedef3d0d85cb6a04e25',
-            '644cf0c3294440666c47538bc33a7b205fe9dbc089a5e71761cb0b4ff19ad5c4',
-            '6aaa5b7bffe271d1826ff0bf8f2fbe5a70bd19d944608b59af6b85a11cf46883',
-            '5aaa95d14bb4230e85c633de96c9420470c7e8c01cb84ab48941ea8720a53b64',
-            '8981f8fca99e249ec521c792f44fcacbbb421ef9559c90ea141c01a183460d0a',
-            'e5a940946c14cd8dfdcebc128ed83178f422532b64bf08d4c77ee791b6a9b1b3'
-        ]
+        // Valid license keys (base64-encoded)
+        const PF_VALID_KEYS = [
+            'UEYtTE1QRi1FVlZOLTBNWko='
+        ];
         
         (function() {
-            async function sha256(str) {
-                const buf = new TextEncoder().encode(str);
-                const hash = await crypto.subtle.digest('SHA-256', buf);
-                return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-            }
-            
             const gate = document.getElementById('licenseGate');
             const input = document.getElementById('licenseKeyInput');
             const btn = document.getElementById('licenseVerifyBtn');
@@ -799,18 +691,13 @@
             const trialBtn = document.getElementById('trialBtn');
             const trialInfo = document.getElementById('trialInfo');
             
+            const validKeys = PF_VALID_KEYS.map(function(k) {
+                try { return atob(k); } catch(e) { return ''; }
+            });
+            
             function hideGate() {
                 gate.classList.add('hidden');
-                setTimeout(() => { gate.style.display = 'none'; }, 500);
-            }
-            
-            function isValidKey(key) {
-                return PF_VALID_HASHES.includes(sha256(key.trim()));
-            }
-            
-            async function verifyAndUnlock(key) {
-                const hash = await sha256(key.trim());
-                return PF_VALID_HASHES.includes(hash);
+                setTimeout(function() { gate.style.display = 'none'; }, 500);
             }
             
             function checkTrial() {
@@ -819,7 +706,7 @@
                     const daysUsed = (Date.now() - parseInt(trialStart)) / (1000 * 60 * 60 * 24);
                     const daysLeft = Math.ceil(PF_TRIAL_DAYS - daysUsed);
                     if (daysLeft > 0) {
-                        trialInfo.textContent = '🎯 ' + daysLeft + ' day' + (daysLeft > 1 ? 's' : '') + ' remaining in trial';
+                        trialInfo.textContent = String.fromCharCode(0x1F3AF) + ' ' + daysLeft + ' day' + (daysLeft > 1 ? 's' : '') + ' remaining in trial';
                         btn.textContent = 'Continue Free Trial';
                         btn.onclick = function() { hideGate(); };
                         return true;
@@ -834,48 +721,32 @@
             
             // Check saved key
             const savedKey = localStorage.getItem('pf-license-key');
-            if (savedKey) {
-                btn.textContent = 'Verifying...';
-                btn.disabled = true;
-                verifyAndUnlock(savedKey).then(function(valid) {
-                    if (valid) {
-                        hideGate();
-                    } else {
-                        localStorage.removeItem('pf-license-key');
-                        btn.textContent = 'Unlock PromptForge';
-                        btn.disabled = false;
-                        checkTrial();
-                    }
-                });
+            if (savedKey && validKeys.indexOf(savedKey.trim()) !== -1) {
+                hideGate();
+            } else if (savedKey) {
+                localStorage.removeItem('pf-license-key');
+                checkTrial();
             } else {
                 checkTrial();
             }
             
             // Verify button
-            btn.addEventListener('click', function() {
+            btn.onclick = function() {
                 const key = input.value.trim();
                 if (!key) {
                     err.textContent = 'Please enter a license key';
                     err.style.display = 'block';
                     return;
                 }
-                btn.textContent = 'Verifying...';
-                btn.disabled = true;
-                err.style.display = 'none';
-                
-                verifyAndUnlock(key).then(function(valid) {
-                    if (valid) {
-                        localStorage.setItem('pf-license-key', key);
-                        success.style.display = 'block';
-                        setTimeout(hideGate, 1200);
-                    } else {
-                        err.textContent = 'Invalid license key. Please check your purchase email.';
-                        err.style.display = 'block';
-                        btn.textContent = 'Unlock PromptForge';
-                        btn.disabled = false;
-                    }
-                });
-            });
+                if (validKeys.indexOf(key) !== -1) {
+                    localStorage.setItem('pf-license-key', key);
+                    success.style.display = 'block';
+                    setTimeout(hideGate, 1200);
+                } else {
+                    err.textContent = 'Invalid license key. Please check your purchase email.';
+                    err.style.display = 'block';
+                }
+            };
             
             // Enter key to submit
             input.addEventListener('keydown', function(e) {
@@ -894,7 +765,7 @@
             purchaseLink.href = 'https://gumroad.com/l/gujne';
         })();
         
-        // === MAIN APP ===
+        // === MAIN APP ===// === MAIN APP ===
         (function() {
             if ('serviceWorker' in navigator) {
                 const swCode = `const CACHE_NAME='pf-v13';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
