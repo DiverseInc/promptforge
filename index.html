@@ -433,6 +433,7 @@
             background: #0f172a;
             display: flex; align-items: center; justify-content: center;
             flex-direction: column;
+            transition: opacity 0.3s;
         }
         .lg-hidden { display: none !important; }
         .lg-card {
@@ -442,7 +443,7 @@
             border: 1px solid #334155; text-align: center;
         }
         .lg-card .lg-icon { font-size: 2.5rem; margin-bottom: 8px; }
-        .lg-card h2 { font-size: 1.6rem; color: #f1f5f9; margin-bottom: 4px; }
+        .lg-card h2 { font-size: 1.6rem; color: #f1f5f9; margin-bottom: 2px; }
         .lg-card .lg-sub { color: #94a3b8; font-size: 0.85rem; margin-bottom: 24px; }
         .lg-card input {
             width: 100%; padding: 12px;
@@ -453,23 +454,25 @@
             box-sizing: border-box;
         }
         .lg-card input:focus { border-color: #6366f1; }
+        .lg-card input::placeholder { color: #475569; }
         .lg-card button {
             width: 100%; padding: 12px;
             background: linear-gradient(135deg, #4f46e5, #6366f1);
             color: #fff; border: none; border-radius: 10px;
             font-weight: 600; cursor: pointer; margin-bottom: 10px;
-            font-size: 0.95rem;
+            font-size: 0.95rem; transition: opacity 0.2s;
         }
-        .lg-card button:disabled { opacity: 0.6; cursor: default; }
-        .lg-card .lg-err { color: #ef4444; font-size: 0.8rem; margin-bottom: 10px; display: none; }
-        .lg-card .lg-ok { color: #10b981; font-size: 0.8rem; margin-bottom: 10px; display: none; }
-        .lg-links { display: flex; justify-content: center; gap: 16px; font-size: 0.85rem; }
-        .lg-links a { color: #818cf8; text-decoration: none; }
+        .lg-card button:hover { opacity: 0.9; }
+        .lg-card button:disabled { opacity: 0.5; cursor: default; }
+        .lg-card .lg-err { color: #f87171; font-size: 0.85rem; margin-bottom: 10px; display: none; font-weight: 500; }
+        .lg-card .lg-ok { color: #34d399; font-size: 0.85rem; margin-bottom: 10px; display: none; font-weight: 500; }
+        .lg-links { display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; margin-top: 4px; }
+        .lg-links a { color: #818cf8; text-decoration: none; font-weight: 500; }
         .lg-links a:hover { text-decoration: underline; }
-        .lg-links button { all: unset; color: #818cf8; cursor: pointer; font-size: 0.85rem; width: auto; background: none; padding: 0; margin: 0; }
-        .lg-links button:hover { text-decoration: underline; }
-        .lg-trial { font-size: 0.75rem; color: #64748b; margin-top: 14px; }
-        .lg-by { font-size: 0.7rem; color: #475569; margin-top: 16px; }
+        .lg-links button { all: unset; color: #818cf8; cursor: pointer; font-size: 0.85rem; width: auto; background: none; padding: 0; margin: 0; font-weight: 500; }
+        .lg-links button:hover { text-decoration: underline; color: #a5b4fc; }
+        .lg-trial { font-size: 0.8rem; color: #94a3b8; margin-top: 14px; }
+        .lg-by { font-size: 0.75rem; color: #64748b; margin-top: 16px; }
 
     </style>
 </head>
@@ -672,7 +675,18 @@
 <script>
 // License check
 (function() {
-    var KEYS = ['PF-LMPF-EVVN-0MZJ'];
+    var KEYS = [
+        'PF-LMPF-EVVN-0MZJ',
+        'PF-DG74-KFL9-VFXG',
+        'PF-N12B-V21G-RU18',
+        'PF-YD34-XEVJ-18AF',
+        'PF-HCJ5-FDAK-MN3K',
+        'PF-RC61-1MLT-1E60',
+        'PF-XCZK-8KI6-FXVY',
+        'PF-QBOV-H3HT-KYBH',
+        'PF-FNVQ-6QF7-WFGH',
+        'PF-MOKD-YH9A-OVUV'
+    ];
     var TRIAL = 7;
     
     var gate = document.getElementById('lgGate');
