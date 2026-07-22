@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>PromptForge Pro — AI Prompt Engineering Studio</title>
+    <title>PromptForge — 37-in-1 AI Prompt Creator</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#4338ca">
@@ -426,75 +426,71 @@
             .output-group { display: block !important; }
             textarea { border: none; background: white; color: black; }
         }
-
+    
         /* LICENSE GATE */
-        .license-gate {
+        .lg-overlay {
             position: fixed; inset: 0; z-index: 9999;
             background: #0f172a;
             display: flex; align-items: center; justify-content: center;
             flex-direction: column;
-            transition: opacity 0.5s ease;
         }
-        .license-gate.hidden { opacity: 0; pointer-events: none; }
-        .license-card {
-            background: #1e293b;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 440px;
-            width: 90%;
+        .lg-hidden { display: none !important; }
+        .lg-card {
+            background: #1e293b; border-radius: 16px; padding: 40px;
+            max-width: 400px; width: 90%;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            border: 1px solid #334155;
-            text-align: center;
+            border: 1px solid #334155; text-align: center;
         }
-        .license-card .logo { font-size: 3rem; margin-bottom: 8px; }
-        .license-card h1 { font-size: 1.8rem; margin-bottom: 2px; background: linear-gradient(135deg, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .license-card .subtitle { color: #94a3b8; margin-bottom: 24px; font-size: 0.9rem; }
-        .license-input {
-            width: 100%; padding: 14px;
-            border: 2px solid #334155; border-radius: 12px;
-            font-size: 1rem; background: #0f172a; color: #f1f5f9;
-            outline: none; margin-bottom: 12px; text-align: center;
-            letter-spacing: 2px; font-family: 'SF Mono', 'Consolas', monospace;
+        .lg-card .lg-icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .lg-card h2 { font-size: 1.6rem; color: #f1f5f9; margin-bottom: 4px; }
+        .lg-card .lg-sub { color: #94a3b8; font-size: 0.85rem; margin-bottom: 24px; }
+        .lg-card input {
+            width: 100%; padding: 12px;
+            border: 2px solid #334155; border-radius: 10px;
+            font-size: 0.95rem; background: #0f172a; color: #f1f5f9;
+            outline: none; margin-bottom: 10px; text-align: center;
+            letter-spacing: 1px; font-family: monospace;
+            box-sizing: border-box;
         }
-        .license-input:focus { border-color: #6366f1; }
-        .license-input::placeholder { letter-spacing: 0; }
-        .license-btn {
-            width: 100%; padding: 14px;
+        .lg-card input:focus { border-color: #6366f1; }
+        .lg-card button {
+            width: 100%; padding: 12px;
             background: linear-gradient(135deg, #4f46e5, #6366f1);
-            color: #fff; border: none; border-radius: 12px;
-            font-weight: 600; cursor: pointer; margin-bottom: 12px;
-            font-size: 1rem; transition: opacity 0.2s;
+            color: #fff; border: none; border-radius: 10px;
+            font-weight: 600; cursor: pointer; margin-bottom: 10px;
+            font-size: 0.95rem;
         }
-        .license-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .license-error { color: #ef4444; font-size: 0.85rem; margin-bottom: 12px; display: none; }
-        .license-success { color: #10b981; font-size: 0.85rem; margin-bottom: 12px; display: none; }
-        .license-links { display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; margin-top: 8px; }
-        .license-links a { color: #818cf8; text-decoration: none; font-weight: 600; }
-        .license-links a:hover { text-decoration: underline; }
-        .license-links button { background: none; border: none; color: #818cf8; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
-        .license-links button:hover { text-decoration: underline; }
-        .license-trial { font-size: 0.8rem; color: #64748b; margin-top: 16px; }
-        .license-powered { font-size: 0.75rem; color: #475569; margin-top: 20px; text-align: center; }
+        .lg-card button:disabled { opacity: 0.6; cursor: default; }
+        .lg-card .lg-err { color: #ef4444; font-size: 0.8rem; margin-bottom: 10px; display: none; }
+        .lg-card .lg-ok { color: #10b981; font-size: 0.8rem; margin-bottom: 10px; display: none; }
+        .lg-links { display: flex; justify-content: center; gap: 16px; font-size: 0.85rem; }
+        .lg-links a { color: #818cf8; text-decoration: none; }
+        .lg-links a:hover { text-decoration: underline; }
+        .lg-links button { all: unset; color: #818cf8; cursor: pointer; font-size: 0.85rem; width: auto; background: none; padding: 0; margin: 0; }
+        .lg-links button:hover { text-decoration: underline; }
+        .lg-trial { font-size: 0.75rem; color: #64748b; margin-top: 14px; }
+        .lg-by { font-size: 0.7rem; color: #475569; margin-top: 16px; }
+
     </style>
 </head>
 <body>
-    <!-- LICENSE GATE -->
-    <div class="license-gate" id="licenseGate">
-        <div class="license-card">
-            <div class="logo">⚡</div>
-            <h1>PromptForge</h1>
-            <div class="subtitle">37-in-1 AI Prompt Creator</div>
-            <input class="license-input" id="licenseKeyInput" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
-            <button class="license-btn" id="licenseVerifyBtn">Unlock PromptForge</button>
-            <div class="license-error" id="licenseError">Invalid license key. Please check and try again.</div>
-            <div class="license-success" id="licenseSuccess">✓ License verified! Redirecting...</div>
-            <div class="license-links">
-                <a href="#" target="_blank" id="purchaseLink" rel="noopener">Purchase License</a>
-                <button id="trialBtn">Try Free for 7 Days</button>
+    <!-- LICENSE -->
+    <div id="lgGate" class="lg-overlay">
+        <div class="lg-card">
+            <div class="lg-icon">⚡</div>
+            <h2>PromptForge</h2>
+            <div class="lg-sub">37-in-1 AI Prompt Creator</div>
+            <input id="lgKey" type="text" placeholder="Enter license key" autocomplete="off">
+            <button id="lgBtn">Unlock PromptForge</button>
+            <div class="lg-err" id="lgErr"></div>
+            <div class="lg-ok" id="lgOk">License verified!</div>
+            <div class="lg-links">
+                <a id="lgBuy" href="#" target="_blank">Purchase License</a>
+                <button id="lgTrial">Try Free for 7 Days</button>
             </div>
-            <div class="license-trial" id="trialInfo"></div>
+            <div class="lg-trial" id="lgTrialInfo"></div>
         </div>
-        <div class="license-powered">by Diverse Industries Inc.</div>
+        <div class="lg-by">by Diverse Industries Inc.</div>
     </div>
 
     <div class="container" id="appContainer">
@@ -672,103 +668,89 @@
 
     <div id="toast" style="position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(100px); background:#1e293b; color:#fff; padding:10px 20px; border-radius:30px; z-index:2000; transition:0.3s; pointer-events:none;"></div>
 
-    <script>
-                // === OFFLINE LICENSE VERIFICATION ===
-        const PF_TRIAL_DAYS = 7;
-        
-        // Valid license keys (base64-encoded)
-        const PF_VALID_KEYS = [
-            'UEYtTE1QRi1FVlZOLTBNWko='
-        ];
-        
-        (function() {
-            const gate = document.getElementById('licenseGate');
-            const input = document.getElementById('licenseKeyInput');
-            const btn = document.getElementById('licenseVerifyBtn');
-            const err = document.getElementById('licenseError');
-            const success = document.getElementById('licenseSuccess');
-            const purchaseLink = document.getElementById('purchaseLink');
-            const trialBtn = document.getElementById('trialBtn');
-            const trialInfo = document.getElementById('trialInfo');
-            
-            const validKeys = PF_VALID_KEYS.map(function(k) {
-                try { return atob(k); } catch(e) { return ''; }
-            });
-            
-            function hideGate() {
-                gate.classList.add('hidden');
-                setTimeout(function() { gate.style.display = 'none'; }, 500);
-            }
-            
-            function checkTrial() {
-                const trialStart = localStorage.getItem('pf-trial-start');
-                if (trialStart) {
-                    const daysUsed = (Date.now() - parseInt(trialStart)) / (1000 * 60 * 60 * 24);
-                    const daysLeft = Math.ceil(PF_TRIAL_DAYS - daysUsed);
-                    if (daysLeft > 0) {
-                        trialInfo.textContent = String.fromCharCode(0x1F3AF) + ' ' + daysLeft + ' day' + (daysLeft > 1 ? 's' : '') + ' remaining in trial';
-                        btn.textContent = 'Continue Free Trial';
-                        btn.onclick = function() { hideGate(); };
-                        return true;
-                    } else {
-                        trialInfo.textContent = 'Trial expired. Purchase a license to continue.';
-                        btn.style.display = 'none';
-                        return false;
-                    }
-                }
-                return false;
-            }
-            
-            // Check saved key
-            const savedKey = localStorage.getItem('pf-license-key');
-            if (savedKey && validKeys.indexOf(savedKey.trim()) !== -1) {
-                hideGate();
-            } else if (savedKey) {
-                localStorage.removeItem('pf-license-key');
-                checkTrial();
+    
+<script>
+// License check
+(function() {
+    var KEYS = ['PF-LMPF-EVVN-0MZJ'];
+    var TRIAL = 7;
+    
+    var gate = document.getElementById('lgGate');
+    var input = document.getElementById('lgKey');
+    var btn = document.getElementById('lgBtn');
+    var err = document.getElementById('lgErr');
+    var ok = document.getElementById('lgOk');
+    var buy = document.getElementById('lgBuy');
+    var trialBtn = document.getElementById('lgTrial');
+    var trialInfo = document.getElementById('lgTrialInfo');
+    
+    if (!gate) return; // safety
+    
+    function hide() { gate.style.display = 'none'; }
+    function isValid(k) { 
+        for (var i = 0; i < KEYS.length; i++) {
+            if (KEYS[i] === k) return true;
+        }
+        return false;
+    }
+    
+    // Check saved key
+    var saved = localStorage.getItem('pf-key');
+    if (saved && isValid(saved.trim())) { hide(); }
+    else if (saved) { localStorage.removeItem('pf-key'); checkTrial(); }
+    else { checkTrial(); }
+    
+    function checkTrial() {
+        var start = localStorage.getItem('pf-trial');
+        if (start) {
+            var days = (Date.now() - parseInt(start)) / 86400000;
+            var left = Math.ceil(TRIAL - days);
+            if (left > 0) {
+                trialInfo.textContent = 'Trial: ' + left + ' day' + (left > 1 ? 's' : '') + ' left';
+                btn.textContent = 'Continue Trial';
+                btn.onclick = function() { hide(); };
+                return true;
             } else {
-                checkTrial();
+                trialInfo.textContent = 'Trial expired. Please purchase.';
+                btn.style.display = 'none';
             }
-            
-            // Verify button
-            btn.onclick = function() {
-                const key = input.value.trim();
-                if (!key) {
-                    err.textContent = 'Please enter a license key';
-                    err.style.display = 'block';
-                    return;
-                }
-                if (validKeys.indexOf(key) !== -1) {
-                    localStorage.setItem('pf-license-key', key);
-                    success.style.display = 'block';
-                    setTimeout(hideGate, 1200);
-                } else {
-                    err.textContent = 'Invalid license key. Please check your purchase email.';
-                    err.style.display = 'block';
-                }
-            };
-            
-            // Enter key to submit
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') { btn.click(); }
-            });
-            
-            // Free trial button
-            trialBtn.addEventListener('click', function() {
-                if (!localStorage.getItem('pf-trial-start')) {
-                    localStorage.setItem('pf-trial-start', Date.now().toString());
-                }
-                hideGate();
-            });
-            
-            // Purchase link
-            purchaseLink.href = 'https://gumroad.com/l/gujne';
-        })();
-        
-        // === MAIN APP ===// === MAIN APP ===
+        }
+        return false;
+    }
+    
+    btn.onclick = function() {
+        var key = input.value.trim();
+        if (!key) { err.textContent = 'Enter a license key'; err.style.display = ''; return; }
+        if (isValid(key)) {
+            localStorage.setItem('pf-key', key);
+            ok.style.display = '';
+            err.style.display = 'none';
+            setTimeout(hide, 1000);
+        } else {
+            err.textContent = 'Invalid key. Check your email.';
+            err.style.display = '';
+        }
+    };
+    
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') btn.click();
+    });
+    
+    trialBtn.onclick = function() {
+        if (!localStorage.getItem('pf-trial')) {
+            localStorage.setItem('pf-trial', Date.now().toString());
+        }
+        hide();
+    };
+    
+    buy.href = 'https://gumroad.com/l/gujne';
+})();
+</script>
+
+    <script>
         (function() {
             if ('serviceWorker' in navigator) {
-                const swCode = `const CACHE_NAME='pf-v13';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+                const swCode = `const CACHE_NAME='pf-v12';self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(['.']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
                 navigator.serviceWorker.register(URL.createObjectURL(new Blob([swCode], {type:'application/javascript'}))).catch(()=>{});
             }
 
